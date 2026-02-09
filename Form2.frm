@@ -1,14 +1,19 @@
 VERSION 5.00
 Begin VB.Form Form2 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "Form2"
    ClientHeight    =   3060
-   ClientLeft      =   120
-   ClientTop       =   420
-   ClientWidth     =   4560
+   ClientLeft      =   20595
+   ClientTop       =   450
+   ClientWidth     =   8055
    LinkTopic       =   "Form2"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
    ScaleHeight     =   3060
-   ScaleWidth      =   4560
-   StartUpPosition =   3  '´°¿ÚÈ±Ê¡
+   ScaleWidth      =   8055
+   ShowInTaskbar   =   0   'False
 End
 Attribute VB_Name = "Form2"
 Attribute VB_GlobalNameSpace = False
