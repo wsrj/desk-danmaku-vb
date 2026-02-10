@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form Form2 
    Appearance      =   0  'Flat
-   BackColor       =   &H80000005&
+   BackColor       =   &H0000FF00&
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "Form2"
    ClientHeight    =   3060
@@ -20,3 +20,11 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub Form_Load()
+   Dim rtn As Long
+   rtn = GetWindowLong(Me.hwnd, GWL_EXSTYLE)
+   rtn = rtn Or WS_EX_LAYERED
+   SetWindowLong Me.hwnd, GWL_EXSTYLE, rtn
+   SetLayeredWindowAttributes Me.hwnd, 0, 150, LWA_ALPHA
+   Me.Width = DanmakuWidth
+End Sub
