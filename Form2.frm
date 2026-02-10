@@ -21,10 +21,5 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Form_Load()
-   Dim rtn As Long
-   rtn = GetWindowLong(Me.hwnd, GWL_EXSTYLE)
-   rtn = rtn Or WS_EX_LAYERED
-   SetWindowLong Me.hwnd, GWL_EXSTYLE, rtn
-   SetLayeredWindowAttributes Me.hwnd, 0, 150, LWA_ALPHA
-   Me.Width = DanmakuWidth
+Me.Width = DanmakuWidth
 End Sub

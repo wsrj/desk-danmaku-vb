@@ -4,10 +4,10 @@ Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.5#0"; "COMCTL32.OCX"
 Begin VB.Form Form1 
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "弹幕神器"
-   ClientHeight    =   5295
+   ClientHeight    =   5505
    ClientLeft      =   10320
    ClientTop       =   5655
-   ClientWidth     =   7140
+   ClientWidth     =   7065
    BeginProperty Font 
       Name            =   "微软雅黑"
       Size            =   9
@@ -21,9 +21,17 @@ Begin VB.Form Form1
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5295
-   ScaleWidth      =   7140
+   ScaleHeight     =   5505
+   ScaleWidth      =   7065
    ShowInTaskbar   =   0   'False
+   Begin VB.CommandButton btnSend 
+      Caption         =   "发送(&E)"
+      Height          =   495
+      Left            =   5280
+      TabIndex        =   13
+      Top             =   4800
+      Width           =   1575
+   End
    Begin MSComDlg.CommonDialog CommonDialog1 
       Left            =   6480
       Top             =   240
@@ -36,10 +44,11 @@ Begin VB.Form Form1
       Height          =   3735
       Left            =   240
       TabIndex        =   1
-      Top             =   1440
+      Top             =   840
       Width           =   6615
       Begin VB.TextBox txtWidth 
          Appearance      =   0  'Flat
+         BackColor       =   &H8000000F&
          BorderStyle     =   0  'None
          ForeColor       =   &H00000000&
          Height          =   375
@@ -68,6 +77,7 @@ Begin VB.Form Form1
       End
       Begin VB.TextBox txtColor 
          Appearance      =   0  'Flat
+         BackColor       =   &H8000000F&
          BorderStyle     =   0  'None
          ForeColor       =   &H00000000&
          Height          =   375
@@ -86,6 +96,7 @@ Begin VB.Form Form1
          Width           =   1575
       End
       Begin VB.TextBox txtFont 
+         BackColor       =   &H8000000F&
          BorderStyle     =   0  'None
          ForeColor       =   &H00000000&
          Height          =   375
@@ -206,6 +217,11 @@ Dim DanmakuColor '颜色变量
 Dim DanmakuFont '字体变量
 Dim DanmakuWidth '宽度变量
 
+Private Sub btnSend_Click()
+Form2.Move Screen.Width, 0
+timer1.Enabled = True
+End Sub
+
 Private Sub Form_Initialize()
 sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
@@ -229,5 +245,6 @@ End Sub
 
 Private Sub sldWidth_Change()
 DanmakuWidth = sldWidth.Value
-txtWidth = DanmakuWidth
+txtWidth.Text = DanmakuWidth
+Form2.Width = DanmakuWidth
 End Sub
