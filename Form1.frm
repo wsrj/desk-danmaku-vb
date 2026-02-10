@@ -197,17 +197,17 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim DanmakuColor
-Dim DanmakuFont
+Dim DanmakuColor '颜色变量
+Dim DanmakuFont '字体变量
 Private Sub btnColorPicker_Click()
-CommonDialog1.ShowColor
+CommonDialog1.ShowColor '弹出选择颜色
 DanmakuColor = CommonDialog1.Color
-txtColor.Text = DanmakuColor
+txtColor.Text = DanmakuColor '在标签中显示颜色
 End Sub
 Private Sub btnFontPicker_Click()
-CommonDialog1.ShowFont
+CommonDialog1.ShowFont '弹出选择字体
 DanmakuFont = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
-txtFont.Text = DanmakuFont
+txtFont.Text = DanmakuFont '在标签中显示字体
 End Sub
 Private Sub mnuExit_Click()
 End
