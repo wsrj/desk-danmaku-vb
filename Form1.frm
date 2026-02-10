@@ -24,6 +24,10 @@ Begin VB.Form Form1
    ScaleHeight     =   5505
    ScaleWidth      =   7065
    ShowInTaskbar   =   0   'False
+   Begin VB.Timer Timer1 
+      Left            =   6000
+      Top             =   240
+   End
    Begin VB.CommandButton btnSend 
       Caption         =   "发送(&E)"
       Height          =   495
@@ -219,24 +223,35 @@ Dim DanmakuWidth '宽度变量
 
 Private Sub btnSend_Click()
 Form2.Move Screen.Width, 0
-timer1.Enabled = True
+Timer1.Enabled = True
 End Sub
 
 Private Sub Form_Initialize()
 sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
+sldWidth.Value = 100
+Form2.Width = 100
+txtWidth.Text = 100 & " px"
+Timer1.Enabled = False
 End Sub
 
 Private Sub btnColorPicker_Click()
 CommonDialog1.ShowColor '弹出选择颜色
 DanmakuColor = CommonDialog1.Color
 txtColor.Text = DanmakuColor '在标签中显示颜色
+Form2.Label1.ForeColor = DanmakuColor
 End Sub
 
 Private Sub btnFontPicker_Click()
 CommonDialog1.ShowFont '弹出选择字体
 DanmakuFont = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
 txtFont.Text = DanmakuFont '在标签中显示字体
+Form2.Label1.FontName = CommonDialog1.FontName
+Form2.Label1.FontSize = CommonDialog1.FontSize
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+End
 End Sub
 
 Private Sub mnuExit_Click()
@@ -245,6 +260,19 @@ End Sub
 
 Private Sub sldWidth_Change()
 DanmakuWidth = sldWidth.Value
-txtWidth.Text = DanmakuWidth
+txtWidth.Text = DanmakuWidth & " px"
 Form2.Width = DanmakuWidth
+Form2.Label1.Width = DanmakuWidth
+End Sub
+
+Sub Timer1_Timer()
+Form2.Move Form2.Left - 1000, 0
+If Form2.Left < 0 - Form2.Width Then
+    Form1.Timer1.Enabled = False
+    Unload Form2
+End If
+End Sub
+
+Private Sub txtDanmaku_Change()
+Form2.Label1.Caption = txtDanmaku.Text
 End Sub
