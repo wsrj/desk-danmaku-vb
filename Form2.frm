@@ -2,15 +2,14 @@ VERSION 5.00
 Begin VB.Form Form2 
    Appearance      =   0  'Flat
    BackColor       =   &H80000005&
-   BorderStyle     =   4  'Fixed ToolWindow
+   BorderStyle     =   0  'None
    Caption         =   "Form2"
    ClientHeight    =   3060
-   ClientLeft      =   20595
-   ClientTop       =   450
+   ClientLeft      =   20550
+   ClientTop       =   60
    ClientWidth     =   8055
+   ControlBox      =   0   'False
    LinkTopic       =   "Form2"
-   MaxButton       =   0   'False
-   MinButton       =   0   'False
    ScaleHeight     =   3060
    ScaleWidth      =   8055
    ShowInTaskbar   =   0   'False

@@ -5,8 +5,8 @@ Begin VB.Form Form1
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "弹幕神器"
    ClientHeight    =   5505
-   ClientLeft      =   10320
-   ClientTop       =   5655
+   ClientLeft      =   5910
+   ClientTop       =   3150
    ClientWidth     =   7065
    BeginProperty Font 
       Name            =   "微软雅黑"
@@ -222,6 +222,7 @@ Dim DanmakuFont '字体变量
 Dim DanmakuWidth '宽度变量
 
 Private Sub btnSend_Click()
+Form2.Show
 Form2.Move Screen.Width, 0
 Timer1.Enabled = True
 End Sub
