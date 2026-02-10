@@ -43,13 +43,24 @@ Begin VB.Form Form1
       TabIndex        =   1
       Top             =   1440
       Width           =   6615
-      Begin ComctlLib.Slider Slider1 
+      Begin VB.TextBox txtWidth 
+         Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
+         ForeColor       =   &H00000000&
+         Height          =   375
+         Left            =   1800
+         Locked          =   -1  'True
+         TabIndex        =   12
+         Top             =   2880
+         Width           =   1335
+      End
+      Begin ComctlLib.Slider sldWidth 
          Height          =   615
-         Left            =   1920
+         Left            =   3360
          TabIndex        =   11
          Top             =   2760
-         Width           =   4215
-         _ExtentX        =   7435
+         Width           =   2775
+         _ExtentX        =   4895
          _ExtentY        =   1085
          _Version        =   327682
          LargeChange     =   50
@@ -199,16 +210,29 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Dim DanmakuColor '颜色变量
 Dim DanmakuFont '字体变量
+Dim DanmakuWidth '宽度变量
+
+Private Sub Form_Initialize()
+sldWidth.Max = Screen.Width
+End Sub
+
 Private Sub btnColorPicker_Click()
 CommonDialog1.ShowColor '弹出选择颜色
 DanmakuColor = CommonDialog1.Color
 txtColor.Text = DanmakuColor '在标签中显示颜色
 End Sub
+
 Private Sub btnFontPicker_Click()
 CommonDialog1.ShowFont '弹出选择字体
 DanmakuFont = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
 txtFont.Text = DanmakuFont '在标签中显示字体
 End Sub
+
 Private Sub mnuExit_Click()
 End
+End Sub
+
+Private Sub sldWidth_Change()
+DanmakuWidth = sldWidth.Value
+txtWidth = DanmakuWidth
 End Sub
