@@ -1,9 +1,7 @@
 VERSION 5.00
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
-Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
+Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.5#0"; "COMCTL32.OCX"
 Begin VB.Form Form1 
-   Appearance      =   0  'Flat
-   BackColor       =   &H80000005&
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "弹幕神器"
    ClientHeight    =   5295
@@ -34,10 +32,7 @@ Begin VB.Form Form1
       _Version        =   393216
    End
    Begin VB.Frame Frame1 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000005&
       Caption         =   "外观"
-      ForeColor       =   &H00000000&
       Height          =   3735
       Left            =   240
       TabIndex        =   1
@@ -91,7 +86,6 @@ Begin VB.Form Form1
          Width           =   1575
       End
       Begin VB.TextBox txtFont 
-         Appearance      =   0  'Flat
          BorderStyle     =   0  'None
          ForeColor       =   &H00000000&
          Height          =   375
@@ -214,6 +208,7 @@ Dim DanmakuWidth '宽度变量
 
 Private Sub Form_Initialize()
 sldWidth.Max = Screen.Width
+sldWidth.TickFrequency = sldWidth.Max / 10
 End Sub
 
 Private Sub btnColorPicker_Click()
