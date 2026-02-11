@@ -12,7 +12,6 @@ Begin VB.Form Form2
    LinkTopic       =   "Form2"
    ScaleHeight     =   3060
    ScaleWidth      =   8055
-   ShowInTaskbar   =   0   'False
    Begin VB.Label Label1 
       BackStyle       =   0  'Transparent
       Height          =   3135

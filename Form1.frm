@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
-Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.5#0"; "COMCTL32.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form Form1 
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "µ¯Ä»ÉñÆ÷"
@@ -32,7 +32,7 @@ Begin VB.Form Form1
       Caption         =   "·¢ËÍ(&E)"
       Height          =   495
       Left            =   5280
-      TabIndex        =   13
+      TabIndex        =   12
       Top             =   4800
       Width           =   1575
    End
@@ -50,6 +50,17 @@ Begin VB.Form Form1
       TabIndex        =   1
       Top             =   840
       Width           =   6615
+      Begin MSComctlLib.Slider sldWidth 
+         Height          =   615
+         Left            =   3840
+         TabIndex        =   13
+         Top             =   2880
+         Width           =   2535
+         _ExtentX        =   4471
+         _ExtentY        =   1085
+         _Version        =   393216
+         TickStyle       =   2
+      End
       Begin VB.TextBox txtWidth 
          Appearance      =   0  'Flat
          BackColor       =   &H8000000F&
@@ -58,26 +69,9 @@ Begin VB.Form Form1
          Height          =   375
          Left            =   1800
          Locked          =   -1  'True
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   2880
          Width           =   1335
-      End
-      Begin ComctlLib.Slider sldWidth 
-         Height          =   615
-         Left            =   3360
-         TabIndex        =   11
-         Top             =   2760
-         Width           =   2775
-         _ExtentX        =   4895
-         _ExtentY        =   1085
-         _Version        =   327682
-         LargeChange     =   50
-         Min             =   100
-         Max             =   1000
-         SelStart        =   100
-         TickStyle       =   2
-         TickFrequency   =   100
-         Value           =   100
       End
       Begin VB.TextBox txtColor 
          Appearance      =   0  'Flat
@@ -176,7 +170,7 @@ Begin VB.Form Form1
       Appearance      =   0  'Flat
       BackColor       =   &H80000005&
       BackStyle       =   0  'Transparent
-      Caption         =   "·¢ËÍµ¯Ä»"
+      Caption         =   "×ÀÃæµ¯Ä»"
       BeginProperty Font 
          Name            =   "Î¢ÈíÑÅºÚ"
          Size            =   12
@@ -320,7 +314,7 @@ Form2.Label1.Width = DanmakuWidth
 End Sub
 
 Sub Timer1_Timer()
-Form2.Move Form2.Left - 1000, 0
+Form2.Move Form2.Left - 50, Screen.Height / 20
 If Form2.Left < 0 - Form2.Width Then
     Form1.Timer1.Enabled = False
     Unload Form2
