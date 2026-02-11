@@ -274,7 +274,11 @@ End
 End Sub
 
 Private Sub mnuAbout_Click()
-ShellAboutA Me.hWnd, "关于弹幕神器", "这是一个能在桌面上发弹幕的程序"
+ShellAboutA Me.hWnd, _
+    "关于弹幕神器#弹幕神器", _
+    "这是一个能在桌面上发弹幕的程序！" & vbCrLf & _
+    "联系作者：https://space.bilibili.com/3493134929496963 或 software.wsrj@outlook.com 或 https://github.com/wsrj", _
+    Me.Icon.Handle
 End Sub
 
 Private Sub mnuContact_Click()

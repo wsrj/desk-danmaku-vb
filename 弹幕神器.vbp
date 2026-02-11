@@ -34,6 +34,7 @@ MinorVer=1
 RevisionVer=0
 AutoIncrementVer=0
 ServerSupportFiles=0
+VersionCompanyName=" "
 VersionFileDescription="可以在桌面上发送弹幕。"
 VersionLegalCopyright="bilibili 该昵称己被占用_"
 VersionProductName="弹幕神器"

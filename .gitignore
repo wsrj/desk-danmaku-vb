@@ -1,2 +1,5 @@
 *.log
 MSSCCPRJ.SCC
+*.exe
+*.EXE
+*.scc

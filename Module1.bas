@@ -13,9 +13,11 @@ Public Declare Function WritePrivateProfileStringA Lib "kernel32" ( _
     ByVal lpString As String, _
     ByVal lpFileName As String) As Long
 Public Declare Function ShellAboutA Lib "shell32" ( _
-    hWnd As Long, _
-    szApp As String, _
-    szOtherStuff As String) As Long
+    ByVal hWnd As Long, _
+    ByVal szApp As String, _
+    ByVal szOtherStuff As String, _
+    ByVal hIcon As Long) As Long
+Public Declare Function GetLastError Lib "kernel32" () As Long
 
 Sub Main()
 Form2.Show
