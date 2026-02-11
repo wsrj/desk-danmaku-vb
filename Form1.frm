@@ -211,6 +211,18 @@ Begin VB.Form Form1
          Shortcut        =   ^X
       End
    End
+   Begin VB.Menu mnuHelp 
+      Caption         =   "帮助(&H)"
+      Begin VB.Menu mnuContact 
+         Caption         =   "联系作者(&C)"
+      End
+      Begin VB.Menu line2 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuAbout 
+         Caption         =   "关于弹幕神器(&A)…"
+      End
+   End
 End
 Attribute VB_Name = "Form1"
 Attribute VB_GlobalNameSpace = False
@@ -218,8 +230,10 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Dim DanmakuColor '颜色变量
-Dim DanmakuFont '字体变量
 Dim DanmakuWidth '宽度变量
+Dim DanmakuFontName '字体变量
+Dim DanmakuFontSize '字号变量
+Dim DanmakuFontText '显示字体文本
 
 Private Sub btnSend_Click()
 Form2.Show
@@ -237,6 +251,7 @@ Timer1.Enabled = False
 End Sub
 
 Private Sub btnColorPicker_Click()
+CommonDialog1.DialogTitle = "选择颜色"
 CommonDialog1.ShowColor '弹出选择颜色
 DanmakuColor = CommonDialog1.Color
 txtColor.Text = DanmakuColor '在标签中显示颜色
@@ -244,19 +259,53 @@ Form2.Label1.ForeColor = DanmakuColor
 End Sub
 
 Private Sub btnFontPicker_Click()
+CommonDialog1.DialogTitle = "选择字体"
 CommonDialog1.ShowFont '弹出选择字体
-DanmakuFont = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
-txtFont.Text = DanmakuFont '在标签中显示字体
-Form2.Label1.FontName = CommonDialog1.FontName
-Form2.Label1.FontSize = CommonDialog1.FontSize
+DanmakuFontName = CommonDialog1.FontName
+DanmakuFontSize = CommonDialog1.FontSize
+DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
+txtFont.Text = DanmakuFontText '在标签中显示字体
+Form2.Label1.FontName = DanmakuFontName
+Form2.Label1.FontSize = DanmakuFontSize
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
 End
 End Sub
 
+Private Sub mnuAbout_Click()
+ShellAboutA Me.hWnd, "关于弹幕神器", "这是一个能在桌面上发弹幕的程序"
+End Sub
+
+Private Sub mnuContact_Click()
+MsgBox "请访问 https://space.bilibili.com/3493134929496963", vbInformation + vbOKOnly, "联系作者"
+End Sub
+
 Private Sub mnuExit_Click()
 End
+End Sub
+
+Private Sub mnuOpen_Click()
+MsgBox "这个功能还没有开发", vbInformation + vbkonly, "提示"
+End Sub
+
+Private Sub mnuSave_Click()
+CommonDialog1.DialogTitle = "保存配置"
+CommonDialog1.DefaultExt = "*.ini"
+CommonDialog1.ShowSave
+file = CommonDialog1.FileName
+If DanmakuFontSize <> "" And DanmakuFontText <> "" Then
+    ResultWriteFont = WritePrivateProfileStringA("danmaku", "font", DanmakuFontName, file)
+    ResultWriteSize = WritePrivateProfileStringA("danmaku", "size", DanmakuFontSize, file)
+    ResultWriteWidth = WritePrivateProfileStringA("danmaku", "width", DanmakuWidth, file)
+    If ResultWriteFont <> 0 And ResultWriteSize <> 0 And ResultWriteWidth <> 0 Then
+        MsgBox "保存配置成功！", vbInformation + vbOKOnly, "成功"
+    Else
+        MsgBox "保存配置失败 (ResultWriteFont=" & ResultWriteFont & ", ResultWriteSize=" & ResultWriteSize & ")", vbCritical, "失败"
+    End If
+Else
+    MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
+End If
 End Sub
 
 Private Sub sldWidth_Change()
@@ -277,3 +326,4 @@ End Sub
 Private Sub txtDanmaku_Change()
 Form2.Label1.Caption = txtDanmaku.Text
 End Sub
+
