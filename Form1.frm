@@ -284,7 +284,25 @@ End
 End Sub
 
 Private Sub mnuOpen_Click()
-MsgBox "这个功能还没有开发", vbInformation + vbkonly, "提示"
+CommonDialog1.ShowOpen
+file = CommonDialog1.FileName
+buffer = Space$(32768)
+'MsgBox "这个功能还没有开发", vbInformation + vbkonly, "提示"
+DanmakuFontName = GetPrivateProfileStringA("danmaku", "font", vbNullString, buffer, 32768, file)
+DanmakuFontSize = GetPrivateProfileStringA("danmaku", "size", vbNullString, buffer, 32768, file)
+DanmakuWidth = GetPrivateProfileStringA("danmaku", "width", vbNullString, buffer, 32768, file)
+DanmakuColor = GetPrivateProfileStringA("danmaku", "color", vbNullString, buffer, 32768, file)
+Form2.Width = DanmakuWidth
+Form2.Label1.Font = DanmakuFontName
+Form2.Label1.FontSize = DanmakuFontSize
+Form2.Label1.ForeColor = DanmakuColor
+If DanmakuWidth < 100 Then
+    MsgBox "弹幕宽度不能低于 100。", vbInformation + vbOKOnly, "提示"
+    DanmakuWidth = 100
+End If
+txtWidth.Text = DanmakuWidth
+txtFont.Text = "字体：" & DanmakuFontName & "，字号：" & DanmakuFontSize
+txtColor.Text = DanmakuColor
 End Sub
 
 Private Sub mnuSave_Click()
@@ -292,14 +310,15 @@ CommonDialog1.DialogTitle = "保存配置"
 CommonDialog1.DefaultExt = "*.ini"
 CommonDialog1.ShowSave
 file = CommonDialog1.FileName
-If DanmakuFontSize <> "" And DanmakuFontText <> "" Then
+If DanmakuFontSize <> "" And DanmakuFontText <> "" And DanmakuColor <> "" Then
     ResultWriteFont = WritePrivateProfileStringA("danmaku", "font", DanmakuFontName, file)
     ResultWriteSize = WritePrivateProfileStringA("danmaku", "size", DanmakuFontSize, file)
     ResultWriteWidth = WritePrivateProfileStringA("danmaku", "width", DanmakuWidth, file)
-    If ResultWriteFont <> 0 And ResultWriteSize <> 0 And ResultWriteWidth <> 0 Then
+    ResultWriteColor = WritePrivateProfileStringA("danmaku", "color", DanmakuColor, file)
+    If ResultWriteFont <> 0 And ResultWriteSize <> 0 And ResultWriteWidth <> 0 And ResultWriteColor <> 0 Then
         MsgBox "保存配置成功！", vbInformation + vbOKOnly, "成功"
     Else
-        MsgBox "保存配置失败 (ResultWriteFont=" & ResultWriteFont & ", ResultWriteSize=" & ResultWriteSize & ")", vbCritical, "失败"
+        MsgBox "保存配置失败 (ResultWriteFont=" & ResultWriteFont & ", ResultWriteSize=" & ResultWriteSize & "ResultWriteColor=" & ResultWriteColor & ")", vbCritical, "失败"
     End If
 Else
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
@@ -324,4 +343,3 @@ End Sub
 Private Sub txtDanmaku_Change()
 Form2.Label1.Caption = txtDanmaku.Text
 End Sub
-
