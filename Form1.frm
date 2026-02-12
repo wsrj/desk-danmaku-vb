@@ -250,7 +250,7 @@ sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
 sldWidth.Value = 100
 Form2.Width = 100
-txtWidth.Text = 100 & " px"
+txtWidth.Text = 100
 Timer1.Enabled = False
 End Sub
 
@@ -338,7 +338,7 @@ End Sub
 Private Sub sldWidth_Change()
 sldWidth.SelLength = sldWidth.Value - 100
 DanmakuWidth = sldWidth.Value
-txtWidth.Text = DanmakuWidth & " px"
+txtWidth.Text = DanmakuWidth
 Form2.Width = DanmakuWidth
 Form2.Label1.Width = DanmakuWidth
 End Sub
