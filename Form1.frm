@@ -274,10 +274,14 @@ CommonDialog1.DialogTitle = "选择字体"
 CommonDialog1.ShowFont '弹出选择字体
 DanmakuFontName = CommonDialog1.FontName
 DanmakuFontSize = CommonDialog1.FontSize
-DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
-txtFont.Text = DanmakuFontText '在标签中显示字体
-Form2.Label1.FontName = DanmakuFontName
-Form2.Label1.FontSize = DanmakuFontSize
+If DanmakuFontName <> "" And DanmakuFontSize <> "" Then
+    DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
+    txtFont.Text = DanmakuFontText '在标签中显示字体
+    Form2.Label1.FontName = DanmakuFontName
+    Form2.Label1.FontSize = DanmakuFontSize
+Else
+    MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
+End If
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -322,6 +326,10 @@ End If
 txtWidth.Text = DanmakuWidth
 txtFont.Text = "字体：" & DanmakuFontName & "，字号：" & DanmakuFontSize
 txtColor.Text = DanmakuColor
+End Sub
+
+Private Sub mnuOption_Click()
+frmOption.Show vbModal, Form1
 End Sub
 
 Private Sub mnuSave_Click()

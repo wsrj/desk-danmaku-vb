@@ -2,16 +2,15 @@ VERSION 5.00
 Begin VB.Form frmOption 
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "选项"
-   ClientHeight    =   3135
+   ClientHeight    =   4275
    ClientLeft      =   -15
    ClientTop       =   330
-   ClientWidth     =   4680
+   ClientWidth     =   5535
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   3135
-   ScaleWidth      =   4680
-   ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  '窗口缺省
+   ScaleHeight     =   4275
+   ScaleWidth      =   5535
+   StartUpPosition =   1  '所有者中心
 End
 Attribute VB_Name = "frmOption"
 Attribute VB_GlobalNameSpace = False
