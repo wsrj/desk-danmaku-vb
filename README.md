@@ -8,7 +8,7 @@
 你想要在桌面上拥有弹幕的体验吗？这个程序可以帮到你（虽然一次只能发一条）。
 
 <figure>
-  <img width="477" height="416" alt="捕获" src="https://github.com/user-attachments/assets/b8e1133f-578a-4c9f-acb4-a6a77ddacf4b" /><br>
+  <img width="477" height="416" alt="捕获" src="https://github.com/user-attachments/assets/b8e1133f-578a-4c9f-acb4-a6a77ddacf4b" />
   <figcaption><center>屏幕截图</center></figcaption>
 </figure>
 
@@ -25,4 +25,4 @@
 ## 编译
 
 不建议在 Windows 11 上进行编译。
-本程序使用 VB Sirk Mini 进行编写，所以请用相同的应用编译
+本程序使用 VB Sirk Mini 进行编写，所以请用相同的应用编译。
