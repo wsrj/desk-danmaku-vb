@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form Form1 
-   BorderStyle     =   4  'Fixed ToolWindow
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "弹幕神器"
    ClientHeight    =   5505
    ClientLeft      =   5910
@@ -201,6 +201,7 @@ Begin VB.Form Form1
       Caption         =   "文件(&F)"
       Begin VB.Menu mnuOpen 
          Caption         =   "打开(&O)"
+         Enabled         =   0   'False
          Shortcut        =   ^O
       End
       Begin VB.Menu mnuSave 
@@ -213,6 +214,12 @@ Begin VB.Form Form1
       Begin VB.Menu mnuExit 
          Caption         =   "退出(&X)"
          Shortcut        =   ^X
+      End
+   End
+   Begin VB.Menu mnuTool 
+      Caption         =   "工具(&T)"
+      Begin VB.Menu mnuOption 
+         Caption         =   "选项(&O)…"
       End
    End
    Begin VB.Menu mnuHelp 
@@ -300,7 +307,6 @@ Private Sub mnuOpen_Click()
 CommonDialog1.ShowOpen
 file = CommonDialog1.FileName
 buffer = Space$(32768)
-'MsgBox "这个功能还没有开发", vbInformation + vbkonly, "提示"
 DanmakuFontName = GetPrivateProfileStringA("danmaku", "font", vbNullString, buffer, 32768, file)
 DanmakuFontSize = GetPrivateProfileStringA("danmaku", "size", vbNullString, buffer, 32768, file)
 DanmakuWidth = GetPrivateProfileStringA("danmaku", "width", vbNullString, buffer, 32768, file)
