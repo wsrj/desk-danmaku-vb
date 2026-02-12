@@ -24,6 +24,7 @@ Begin VB.Form Form1
    ScaleHeight     =   5505
    ScaleWidth      =   7065
    ShowInTaskbar   =   0   'False
+   StartUpPosition =   2  'ÆÁÄ»ÖÐÐÄ
    Begin VB.Timer Timer1 
       Left            =   6000
       Top             =   240
