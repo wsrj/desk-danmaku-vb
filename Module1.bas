@@ -17,6 +17,16 @@ Public Declare Function ShellAboutA Lib "shell32" ( _
     ByVal szOtherStuff As String, _
     ByVal hIcon As Long) As Long
 Public Declare Function GetLastError Lib "kernel32" () As Long
+'Public Declare Function TaskDialog Lib "commctl32" ( _
+'    ByVal hwndOwner As Long, _
+'    ByVal hInstance As String, _
+'    ByVal pszWindowTitle As String, _
+'    ByVal pszMainInstruction As String, _
+'    ByVal pszContent As String, _
+'    ByVal dwCommonButtons As Long, _
+'    ByVal pszIcon As Long, _
+'    pnButton As Long _
+') As Long
 
 Sub Main()
 Form2.Show
