@@ -54,12 +54,17 @@ Begin VB.Form Form1
          Height          =   615
          Left            =   3840
          TabIndex        =   13
-         Top             =   2880
+         ToolTipText     =   "长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度"
+         Top             =   2760
          Width           =   2535
          _ExtentX        =   4471
          _ExtentY        =   1085
          _Version        =   393216
+         Min             =   100
+         Max             =   1000
+         SelectRange     =   -1  'True
          TickStyle       =   2
+         Value           =   100
       End
       Begin VB.TextBox txtWidth 
          Appearance      =   0  'Flat
@@ -70,6 +75,7 @@ Begin VB.Form Form1
          Left            =   1800
          Locked          =   -1  'True
          TabIndex        =   11
+         ToolTipText     =   "弹幕最大能达到多宽，如果超出该值就会换行"
          Top             =   2880
          Width           =   1335
       End
@@ -82,6 +88,7 @@ Begin VB.Form Form1
          Left            =   1800
          Locked          =   -1  'True
          TabIndex        =   9
+         ToolTipText     =   "你选择的颜色"
          Top             =   2040
          Width           =   2535
       End
@@ -101,6 +108,7 @@ Begin VB.Form Form1
          Left            =   1800
          Locked          =   -1  'True
          TabIndex        =   6
+         ToolTipText     =   "你选择的字体与字号"
          Top             =   1200
          Width           =   2535
       End
@@ -118,6 +126,7 @@ Begin VB.Form Form1
          Left            =   1800
          TabIndex        =   3
          Text            =   "哔哩哔哩( ゜- ゜)つロ干杯~"
+         ToolTipText     =   "输入你要发的弹幕内容"
          Top             =   480
          Width           =   4335
       End
@@ -326,6 +335,7 @@ End If
 End Sub
 
 Private Sub sldWidth_Change()
+sldWidth.SelLength = sldWidth.Value - 100
 DanmakuWidth = sldWidth.Value
 txtWidth.Text = DanmakuWidth & " px"
 Form2.Width = DanmakuWidth
