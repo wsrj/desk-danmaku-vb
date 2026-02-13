@@ -8,13 +8,30 @@ Begin VB.Form frmContainer
    ClientTop       =   60
    ClientWidth     =   8055
    ControlBox      =   0   'False
-   LinkTopic       =   "Form2"
+   BeginProperty Font 
+      Name            =   "Î¢ÈíÑÅºÚ"
+      Size            =   9
+      Charset         =   134
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   3060
    ScaleWidth      =   8055
    Begin VB.Label Label1 
       BackStyle       =   0  'Transparent
+      BeginProperty Font 
+         Name            =   "ËÎÌå"
+         Size            =   9
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   3135
       Left            =   0
       TabIndex        =   0
@@ -35,4 +52,8 @@ SetLayeredWindowAttributes Me.hWnd, vbWhite, 0, 1
 Me.Width = DanmakuWidth
 Me.Height = Screen.Height - Screen.Height / 20
 Label1.Caption = frmMain.txtDanmaku.Text
+End Sub
+
+Private Sub Form_Resize()
+Label1.Move 0, 0, Me.Width, Me.Height
 End Sub

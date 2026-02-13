@@ -36,6 +36,7 @@ Public Declare Function SetLayeredWindowAttributes Lib "user32" ( _
 
 Sub Main()
 frmMain.Show
+frmContainer.Show
 frmContainer.Move Screen.Width, Screen.Height / 20
 frmMain.Timer1.Interval = 10
 End Sub

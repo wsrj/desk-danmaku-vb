@@ -44,7 +44,7 @@ Begin VB.Form frmMain
       _ExtentY        =   847
       _Version        =   393216
    End
-   Begin VB.Frame Frame1 
+   Begin VB.Frame fraAppearance 
       Caption         =   "外观"
       Height          =   3735
       Left            =   240
@@ -249,14 +249,16 @@ Dim DanmakuFontSize '字号变量
 Dim DanmakuFontText '显示字体文本
 
 Private Sub btnSend_Click()
-If ShowContainerBorder = True Then
-    frmContainer.BorderStyle = 3
+If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
+    frmContainer.Label1.ForeColor = DanmakuColor
+    frmContainer.Label1.FontName = DanmakuFontName
+    frmContainer.Label1.FontSize = DanmakuFontSize
+    frmContainer.Show
+    frmContainer.Move Screen.Width, 0
+    Timer1.Enabled = True
 Else
-    frmContainer.BorderStyle = 0
+    MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
 End If
-frmContainer.Show
-frmContainer.Move Screen.Width, 0
-Timer1.Enabled = True
 End Sub
 
 Private Sub Form_Initialize()
@@ -378,13 +380,15 @@ frmContainer.Label1.Width = DanmakuWidth
 End Sub
 
 Sub Timer1_Timer()
+fraAppearance.Enabled = False
 sldWidth.Enabled = False
 btnSend.Enabled = False
 ' 每个时钟周期向左移动 50 像素
 frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
 If frmContainer.Left < 0 - frmContainer.Width Then
     frmMain.Timer1.Enabled = False
-    Unload frmContainer
+    frmContainer.Left = Screen.Width ' 移动回初始位置
+    fraAppearance.Enabled = True
     sldWidth.Enabled = True
     btnSend.Enabled = True
 End If
