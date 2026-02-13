@@ -61,7 +61,6 @@ Begin VB.Form Form1
          _ExtentX        =   4471
          _ExtentY        =   1085
          _Version        =   393216
-         Min             =   100
          Max             =   1000
          SelectRange     =   -1  'True
          TickStyle       =   2
@@ -353,7 +352,11 @@ End If
 End Sub
 
 Private Sub sldWidth_Change()
-sldWidth.SelLength = sldWidth.Value - 100
+If sldWidth.Value < 100 Then
+    sldWidth.Value = 100
+End If
+sldWidth.SelStart = 0
+sldWidth.SelLength = sldWidth.Value
 DanmakuWidth = sldWidth.Value
 txtWidth.Text = DanmakuWidth
 Form2.Width = DanmakuWidth
