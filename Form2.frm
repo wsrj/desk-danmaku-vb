@@ -3,6 +3,7 @@ Begin VB.Form frmContainer
    Appearance      =   0  'Flat
    BackColor       =   &H80000005&
    BorderStyle     =   0  'None
+   Caption         =   "µ¯Ä»"
    ClientHeight    =   3060
    ClientLeft      =   20550
    ClientTop       =   60
@@ -21,6 +22,7 @@ Begin VB.Form frmContainer
    MinButton       =   0   'False
    ScaleHeight     =   3060
    ScaleWidth      =   8055
+   ShowInTaskbar   =   0   'False
    Begin VB.Label Label1 
       BackStyle       =   0  'Transparent
       BeginProperty Font 

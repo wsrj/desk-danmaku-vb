@@ -1,5 +1,4 @@
 Attribute VB_Name = "Module1"
-Dim ShowContainerBorder As Boolean
 Public Declare Function GetPrivateProfileStringA Lib "kernel32" ( _
     ByVal lpApplicationName As String, _
     ByVal lpKeyName As Any, _

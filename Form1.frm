@@ -24,7 +24,6 @@ Begin VB.Form frmMain
    ScaleHeight     =   5505
    ScaleWidth      =   7065
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   2  '屏幕中心
    Begin VB.Timer Timer1 
       Left            =   6000
       Top             =   240
@@ -175,6 +174,14 @@ Begin VB.Form frmMain
          Width           =   1215
       End
    End
+   Begin VB.Label lblEgg 
+      BackStyle       =   0  'Transparent
+      Height          =   495
+      Left            =   240
+      TabIndex        =   14
+      Top             =   4800
+      Width           =   4815
+   End
    Begin VB.Label Label1 
       Appearance      =   0  'Flat
       BackColor       =   &H80000005&
@@ -198,11 +205,6 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnuFile 
       Caption         =   "文件(&F)"
-      Begin VB.Menu mnuOpen 
-         Caption         =   "打开(&O)"
-         Enabled         =   0   'False
-         Shortcut        =   ^O
-      End
       Begin VB.Menu mnuSave 
          Caption         =   "保存(&S)"
          Shortcut        =   ^S
@@ -217,11 +219,8 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnuTool 
       Caption         =   "工具(&T)"
-      Enabled         =   0   'False
-      Visible         =   0   'False
       Begin VB.Menu mnuOption 
          Caption         =   "选项(&O)…"
-         Enabled         =   0   'False
       End
    End
    Begin VB.Menu mnuHelp 
@@ -247,6 +246,7 @@ Dim DanmakuWidth '宽度变量
 Dim DanmakuFontName '字体变量
 Dim DanmakuFontSize '字号变量
 Dim DanmakuFontText '显示字体文本
+Dim ShowEgg As Long
 
 Private Sub btnSend_Click()
 If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
@@ -262,6 +262,7 @@ End If
 End Sub
 
 Private Sub Form_Initialize()
+ShowEgg = 0
 sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
 sldWidth.Value = 100
@@ -297,6 +298,16 @@ Private Sub Form_Unload(Cancel As Integer)
 End
 End Sub
 
+Private Sub lblEgg_Click()
+' 调用彩蛋功能
+Egg ShowEgg
+End Sub
+
+Private Sub lblEgg_DblClick()
+' 调用彩蛋功能
+Egg ShowEgg
+End Sub
+
 Private Sub mnuAbout_Click()
 ShellAboutA Me.hWnd, _
     "关于弹幕神器#弹幕神器", _
@@ -315,27 +326,27 @@ End Sub
 Private Sub mnuExit_Click()
 End
 End Sub
-
-Private Sub mnuOpen_Click()
-CommonDialog1.ShowOpen
-file = CommonDialog1.FileName
-buffer = Space$(32768)
-DanmakuFontName = GetPrivateProfileStringA("danmaku", "font", vbNullString, buffer, 32768, file)
-DanmakuFontSize = GetPrivateProfileStringA("danmaku", "size", vbNullString, buffer, 32768, file)
-DanmakuWidth = GetPrivateProfileStringA("danmaku", "width", vbNullString, buffer, 32768, file)
-DanmakuColor = GetPrivateProfileStringA("danmaku", "color", vbNullString, buffer, 32768, file)
-frmContainer.Width = DanmakuWidth
-frmContainer.Label1.Font = DanmakuFontName
-frmContainer.Label1.FontSize = DanmakuFontSize
-frmContainer.Label1.ForeColor = DanmakuColor
-If DanmakuWidth < 100 Then
-    MsgBox "弹幕宽度不能低于 100。", vbInformation + vbOKOnly, "提示"
-    DanmakuWidth = 100
-End If
-txtWidth.Text = DanmakuWidth
-txtFont.Text = "字体：" & DanmakuFontName & "，字号：" & DanmakuFontSize
-txtColor.Text = DanmakuColor
-End Sub
+'下面这坨使就让它封存吧
+'Private Sub mnuOpen_Click()
+'CommonDialog1.ShowOpen
+'file = CommonDialog1.FileName
+'buffer = Space$(32768)
+'DanmakuFontName = GetPrivateProfileStringA("danmaku", "font", vbNullString, buffer, 32768, file)
+'DanmakuFontSize = GetPrivateProfileStringA("danmaku", "size", vbNullString, buffer, 32768, file)
+'DanmakuWidth = GetPrivateProfileStringA("danmaku", "width", vbNullString, buffer, 32768, file)
+'DanmakuColor = GetPrivateProfileStringA("danmaku", "color", vbNullString, buffer, 32768, file)
+'frmContainer.Width = DanmakuWidth
+'frmContainer.Label1.Font = DanmakuFontName
+'frmContainer.Label1.FontSize = DanmakuFontSize
+'frmContainer.Label1.ForeColor = DanmakuColor
+'If DanmakuWidth < 100 Then
+'    MsgBox "弹幕宽度不能低于 100。", vbInformation + vbOKOnly, "提示"
+'    DanmakuWidth = 100
+'End If
+'txtWidth.Text = DanmakuWidth
+'txtFont.Text = "字体：" & DanmakuFontName & "，字号：" & DanmakuFontSize
+'txtColor.Text = DanmakuColor
+'End Sub
 
 Private Sub mnuOption_Click()
 frmOption.Show vbModal, frmMain
@@ -397,3 +408,19 @@ End Sub
 Private Sub txtDanmaku_Change()
 frmContainer.Label1.Caption = txtDanmaku.Text
 End Sub
+
+Private Function Egg(Count As Long)
+' 如果计次为 0 就使它为 1，如果为 1 就使它为 2，
+' 如果为 2 就显示彩蛋并清零计次，
+' 用到上面就是单击一次再双击一次（顺序反过来也可以）
+' 就显示彩蛋
+If Count = 0 Then
+    Count = 1
+ElseIf Count = 1 Then
+    Count = 2
+ElseIf Count = 2 Then
+    MsgBox "你发现了彩蛋！", vbOKOnly + vbApplicationModal + vbInformation, "彩蛋"
+    frmEgg.Show vbModal, Me
+    Count = 0
+End If
+End Function
