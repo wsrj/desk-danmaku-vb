@@ -19,6 +19,7 @@ Begin VB.Form frmMain
    EndProperty
    ForeColor       =   &H00000000&
    LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5745
@@ -75,7 +76,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "18:52"
+            TextSave        =   "21:20"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -280,9 +281,6 @@ Begin VB.Form frmMain
       Begin VB.Menu mnuExit 
          Caption         =   "退出(&X)"
          Shortcut        =   ^X
-      End
-      Begin VB.Menu mnuOption 
-         Caption         =   "选项(&O)…"
       End
    End
    Begin VB.Menu mnuHelp 
