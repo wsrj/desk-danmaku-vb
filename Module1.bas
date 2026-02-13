@@ -1,4 +1,5 @@
 Attribute VB_Name = "Module1"
+Dim ShowContainerBorder As Boolean
 Public Declare Function GetPrivateProfileStringA Lib "kernel32" ( _
     ByVal lpApplicationName As String, _
     ByVal lpKeyName As Any, _
@@ -34,7 +35,6 @@ Public Declare Function SetLayeredWindowAttributes Lib "user32" ( _
 'Const LWA_ALPHA = &H2
 
 Sub Main()
-frmContainer.Show
 frmMain.Show
 frmContainer.Move Screen.Width, Screen.Height / 20
 frmMain.Timer1.Interval = 10

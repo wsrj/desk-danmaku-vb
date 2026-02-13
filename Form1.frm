@@ -217,8 +217,11 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnuTool 
       Caption         =   "工具(&T)"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnuOption 
          Caption         =   "选项(&O)…"
+         Enabled         =   0   'False
       End
    End
    Begin VB.Menu mnuHelp 
@@ -246,6 +249,11 @@ Dim DanmakuFontSize '字号变量
 Dim DanmakuFontText '显示字体文本
 
 Private Sub btnSend_Click()
+If ShowContainerBorder = True Then
+    frmContainer.BorderStyle = 3
+Else
+    frmContainer.BorderStyle = 0
+End If
 frmContainer.Show
 frmContainer.Move Screen.Width, 0
 Timer1.Enabled = True

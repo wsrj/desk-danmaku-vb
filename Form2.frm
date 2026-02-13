@@ -9,6 +9,8 @@ Begin VB.Form frmContainer
    ClientWidth     =   8055
    ControlBox      =   0   'False
    LinkTopic       =   "Form2"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
    ScaleHeight     =   3060
    ScaleWidth      =   8055
    Begin VB.Label Label1 
@@ -30,7 +32,6 @@ Private Sub Form_Load()
 SetWindowLongA Me.hWnd, -20, GetWindowLongA(Me.hWnd, -20) Or 524288
 ' …Ë÷√Õ∏√˜∂»
 SetLayeredWindowAttributes Me.hWnd, vbWhite, 0, 1
-
 Me.Width = DanmakuWidth
 Me.Height = Screen.Height - Screen.Height / 20
 Label1.Caption = frmMain.txtDanmaku.Text
