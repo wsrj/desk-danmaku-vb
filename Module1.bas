@@ -17,16 +17,21 @@ Public Declare Function ShellAboutA Lib "shell32" ( _
     ByVal szOtherStuff As String, _
     ByVal hIcon As Long) As Long
 Public Declare Function GetLastError Lib "kernel32" () As Long
-'Public Declare Function TaskDialog Lib "commctl32" ( _
-'    ByVal hwndOwner As Long, _
-'    ByVal hInstance As String, _
-'    ByVal pszWindowTitle As String, _
-'    ByVal pszMainInstruction As String, _
-'    ByVal pszContent As String, _
-'    ByVal dwCommonButtons As Long, _
-'    ByVal pszIcon As Long, _
-'    pnButton As Long _
-') As Long
+Public Declare Function SetWindowLongA Lib "user32" ( _
+    ByVal hWnd As Long, _
+    ByVal nIndex As Long, _
+    ByVal dwNewLong As Long) As Long
+Public Declare Function GetWindowLongA Lib "user32" ( _
+    ByVal hWnd As Long, _
+    ByVal nIndex As Long) As Long
+Public Declare Function SetLayeredWindowAttributes Lib "user32" ( _
+    ByVal hWnd As Long, _
+    ByVal crKey As Long, _
+    ByVal bAlph As Byte, _
+    ByVal dwFlags As Long) As Long
+'Const GWL_EXSTYLE = (-20)
+'Const WS_EX_LAYERED = &H80000
+'Const LWA_ALPHA = &H2
 
 Sub Main()
 frmContainer.Show

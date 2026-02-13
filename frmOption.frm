@@ -6,11 +6,54 @@ Begin VB.Form frmOption
    ClientLeft      =   -15
    ClientTop       =   330
    ClientWidth     =   5535
+   BeginProperty Font 
+      Name            =   "微软雅黑"
+      Size            =   9
+      Charset         =   134
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   4275
    ScaleWidth      =   5535
    StartUpPosition =   1  '所有者中心
+   Begin VB.CommandButton btnCancel 
+      Cancel          =   -1  'True
+      Caption         =   "取消(&C)"
+      Height          =   495
+      Left            =   2520
+      TabIndex        =   3
+      Top             =   3600
+      Width           =   1335
+   End
+   Begin VB.CommandButton btnApply 
+      Caption         =   "应用(&A)"
+      Height          =   495
+      Left            =   4080
+      TabIndex        =   2
+      Top             =   3600
+      Width           =   1335
+   End
+   Begin VB.CommandButton btnOK 
+      Caption         =   "确定(&O)"
+      Default         =   -1  'True
+      Height          =   495
+      Left            =   960
+      TabIndex        =   1
+      Top             =   3600
+      Width           =   1335
+   End
+   Begin VB.CheckBox Check1 
+      Caption         =   "Check1"
+      Height          =   255
+      Left            =   240
+      TabIndex        =   0
+      Top             =   360
+      Width           =   5055
+   End
 End
 Attribute VB_Name = "frmOption"
 Attribute VB_GlobalNameSpace = False
