@@ -33,15 +33,29 @@ Begin VB.Form frmEgg
       _ExtentY        =   661
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
-         NumPanels       =   2
+         NumPanels       =   3
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   1
             AutoSize        =   2
-            TextSave        =   "CAPS"
+            Enabled         =   0   'False
+            Text            =   "CapsLk"
+            TextSave        =   "CapsLk"
+            Object.ToolTipText     =   "Caps Lock 状态"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   2
             Enabled         =   0   'False
+            Object.Width           =   2752
+            Text            =   "还没有按有效的键"
+            TextSave        =   "还没有按有效的键"
+            Object.ToolTipText     =   "按下的键"
+         EndProperty
+         BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            AutoSize        =   2
+            Object.Width           =   3810
+            Text            =   "使用 [W] [A] [S] [D] 操控"
+            TextSave        =   "使用 [W] [A] [S] [D] 操控"
+            Object.ToolTipText     =   "提示"
          EndProperty
       EndProperty
    End
@@ -59,4 +73,56 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Form_KeyPress(KeyAscii As Integer)
 staBottom.Panels(2).Text = Chr(KeyAscii)
+' 键盘大概是这样：
+'  Q  [W]  E   R   T …
+' [A] [S] [D]  F   G …
+' …
+' 按下向上
+If Chr(KeyAscii) = "W" Or Chr(KeyAscii) = "w" Then
+    If Shape1.Top >= 0 Then
+        Shape1.Top = Shape1.Top - 20
+    End If
+    CheckPos Shape1
+' 按下向下
+ElseIf Chr(KeyAscii) = "S" Or Chr(KeyAscii) = "s" Then
+    If Shape1.Top <= Me.Height - Shape1.Height Then
+        Shape1.Top = Shape1.Top + 20
+    End If
+    CheckPos Shape1
+' 按下向左
+ElseIf Chr(KeyAscii) = "A" Or Chr(KeyAscii) = "a" Then
+    If Shape1.Left >= 0 Then
+        Shape1.Left = Shape1.Left - 20
+    End If
+    CheckPos Shape1
+' 按下向右
+ElseIf Chr(KeyAscii) = "D" Or Chr(KeyAscii) = "d" Then
+    If Shape1.Left < Me.Width - Shape1.Width Then
+        Shape1.Left = Shape1.Left + 20
+    End If
+    CheckPos Shape1
+End If
 End Sub
+
+Private Function CheckPos(Object As Object)
+' 检查左边距
+If Object.Left < 0 Then
+    Object.Left = 0
+    staBottom.Panels(3).Text = "超出窗口范围"
+ElseIf Object.Left > Me.Width - Object.Width Then
+    Object.Left = Me.Width - Object.Width
+    staBottom.Panels(3).Text = "超出窗口范围"
+Else
+    staBottom.Panels(3).Text = "使用 [W] [A] [S] [D] 操控"
+End If
+' 检查顶边距
+If Object.Top < 0 Then
+    Object.Top = 0
+    staBottom.Panels(3).Text = "超出窗口范围"
+ElseIf Object.Top > Me.Height - Object.Height - staBottom.Height Then
+    Object.Top = Me.Height - Object.Height - staBottom.Height
+    staBottom.Panels(3).Text = "超出窗口范围"
+Else
+    staBottom.Panels(3).Text = "使用 [W] [A] [S] [D] 操控"
+End If
+End Function

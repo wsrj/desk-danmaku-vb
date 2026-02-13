@@ -4,7 +4,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmMain 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "µ¯Ä»ÉñÆ÷"
-   ClientHeight    =   5505
+   ClientHeight    =   5745
    ClientLeft      =   5910
    ClientTop       =   3150
    ClientWidth     =   7065
@@ -21,9 +21,74 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5505
+   ScaleHeight     =   5745
    ScaleWidth      =   7065
    ShowInTaskbar   =   0   'False
+   Begin MSComctlLib.StatusBar StatusBar1 
+      Align           =   2  'Align Bottom
+      Height          =   375
+      Left            =   0
+      TabIndex        =   15
+      Top             =   5370
+      Width           =   7065
+      _ExtentX        =   12462
+      _ExtentY        =   661
+      _Version        =   393216
+      BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
+         NumPanels       =   5
+         BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   1
+            AutoSize        =   2
+            Enabled         =   0   'False
+            Object.Width           =   1005
+            MinWidth        =   176
+            Text            =   "CapsLk"
+            TextSave        =   "CAPS"
+            Object.ToolTipText     =   "Caps Lock ¼ü×´Ì¬"
+         EndProperty
+         BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   2
+            AutoSize        =   2
+            Object.Width           =   1032
+            MinWidth        =   176
+            Text            =   "NumLk"
+            TextSave        =   "NUM"
+            Object.ToolTipText     =   "Num Lock ¼ü×´Ì¬"
+         EndProperty
+         BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   3
+            AutoSize        =   2
+            Enabled         =   0   'False
+            Object.Width           =   767
+            MinWidth        =   176
+            Text            =   "Insert"
+            TextSave        =   "INS"
+            Object.ToolTipText     =   "Insert ¼ü×´Ì¬"
+         EndProperty
+         BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   6
+            Alignment       =   2
+            TextSave        =   "2026/2/13"
+            Object.ToolTipText     =   "ÈÕÆÚ"
+         EndProperty
+         BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Style           =   5
+            Alignment       =   2
+            AutoSize        =   2
+            TextSave        =   "18:52"
+            Object.ToolTipText     =   "Ê±¼ä"
+         EndProperty
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Î¢ÈíÑÅºÚ"
+         Size            =   9
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+   End
    Begin VB.Timer Timer1 
       Left            =   6000
       Top             =   240
@@ -216,9 +281,6 @@ Begin VB.Form frmMain
          Caption         =   "ÍË³ö(&X)"
          Shortcut        =   ^X
       End
-   End
-   Begin VB.Menu mnuTool 
-      Caption         =   "¹¤¾ß(&T)"
       Begin VB.Menu mnuOption 
          Caption         =   "Ñ¡Ïî(&O)¡­"
       End
@@ -347,10 +409,6 @@ End Sub
 'txtFont.Text = "×ÖÌå£º" & DanmakuFontName & "£¬×ÖºÅ£º" & DanmakuFontSize
 'txtColor.Text = DanmakuColor
 'End Sub
-
-Private Sub mnuOption_Click()
-frmOption.Show vbModal, frmMain
-End Sub
 
 Private Sub mnuSave_Click()
 CommonDialog1.DialogTitle = "±£´æÅäÖÃ"
