@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
-Begin VB.Form Form1 
+Begin VB.Form frmMain 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "弹幕神器"
    ClientHeight    =   5505
@@ -234,7 +234,7 @@ Begin VB.Form Form1
       End
    End
 End
-Attribute VB_Name = "Form1"
+Attribute VB_Name = "frmMain"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -246,8 +246,8 @@ Dim DanmakuFontSize '字号变量
 Dim DanmakuFontText '显示字体文本
 
 Private Sub btnSend_Click()
-Form2.Show
-Form2.Move Screen.Width, 0
+frmContainer.Show
+frmContainer.Move Screen.Width, 0
 Timer1.Enabled = True
 End Sub
 
@@ -255,7 +255,7 @@ Private Sub Form_Initialize()
 sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
 sldWidth.Value = 100
-Form2.Width = 100
+frmContainer.Width = 100
 txtWidth.Text = 100
 Timer1.Enabled = False
 End Sub
@@ -265,7 +265,7 @@ CommonDialog1.DialogTitle = "选择颜色"
 CommonDialog1.ShowColor '弹出选择颜色
 DanmakuColor = CommonDialog1.Color
 txtColor.Text = DanmakuColor '在标签中显示颜色
-Form2.Label1.ForeColor = DanmakuColor
+frmContainer.Label1.ForeColor = DanmakuColor
 End Sub
 
 Private Sub btnFontPicker_Click()
@@ -276,8 +276,8 @@ DanmakuFontSize = CommonDialog1.FontSize
 If DanmakuFontName <> "" And DanmakuFontSize <> "" Then
     DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
     txtFont.Text = DanmakuFontText '在标签中显示字体
-    Form2.Label1.FontName = DanmakuFontName
-    Form2.Label1.FontSize = DanmakuFontSize
+    frmContainer.Label1.FontName = DanmakuFontName
+    frmContainer.Label1.FontSize = DanmakuFontSize
 Else
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
 End If
@@ -314,10 +314,10 @@ DanmakuFontName = GetPrivateProfileStringA("danmaku", "font", vbNullString, buff
 DanmakuFontSize = GetPrivateProfileStringA("danmaku", "size", vbNullString, buffer, 32768, file)
 DanmakuWidth = GetPrivateProfileStringA("danmaku", "width", vbNullString, buffer, 32768, file)
 DanmakuColor = GetPrivateProfileStringA("danmaku", "color", vbNullString, buffer, 32768, file)
-Form2.Width = DanmakuWidth
-Form2.Label1.Font = DanmakuFontName
-Form2.Label1.FontSize = DanmakuFontSize
-Form2.Label1.ForeColor = DanmakuColor
+frmContainer.Width = DanmakuWidth
+frmContainer.Label1.Font = DanmakuFontName
+frmContainer.Label1.FontSize = DanmakuFontSize
+frmContainer.Label1.ForeColor = DanmakuColor
 If DanmakuWidth < 100 Then
     MsgBox "弹幕宽度不能低于 100。", vbInformation + vbOKOnly, "提示"
     DanmakuWidth = 100
@@ -328,7 +328,7 @@ txtColor.Text = DanmakuColor
 End Sub
 
 Private Sub mnuOption_Click()
-frmOption.Show vbModal, Form1
+frmOption.Show vbModal, frmMain
 End Sub
 
 Private Sub mnuSave_Click()
@@ -359,18 +359,18 @@ sldWidth.SelStart = 0
 sldWidth.SelLength = sldWidth.Value
 DanmakuWidth = sldWidth.Value
 txtWidth.Text = DanmakuWidth
-Form2.Width = DanmakuWidth
-Form2.Label1.Width = DanmakuWidth
+frmContainer.Width = DanmakuWidth
+frmContainer.Label1.Width = DanmakuWidth
 End Sub
 
 Sub Timer1_Timer()
-Form2.Move Form2.Left - 50, Screen.Height / 20
-If Form2.Left < 0 - Form2.Width Then
-    Form1.Timer1.Enabled = False
-    Unload Form2
+frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
+If frmContainer.Left < 0 - frmContainer.Width Then
+    frmMain.Timer1.Enabled = False
+    Unload frmContainer
 End If
 End Sub
 
 Private Sub txtDanmaku_Change()
-Form2.Label1.Caption = txtDanmaku.Text
+frmContainer.Label1.Caption = txtDanmaku.Text
 End Sub

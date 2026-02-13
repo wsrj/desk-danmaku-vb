@@ -29,8 +29,8 @@ Public Declare Function GetLastError Lib "kernel32" () As Long
 ') As Long
 
 Sub Main()
-Form2.Show
-Form1.Show
-Form2.Move Screen.Width, Screen.Height / 20
-Form1.Timer1.Interval = 10
+frmContainer.Show
+frmMain.Show
+frmContainer.Move Screen.Width, Screen.Height / 20
+frmMain.Timer1.Interval = 10
 End Sub

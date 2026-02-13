@@ -1,9 +1,8 @@
 VERSION 5.00
-Begin VB.Form Form2 
+Begin VB.Form frmContainer 
    Appearance      =   0  'Flat
    BackColor       =   &H80000005&
    BorderStyle     =   0  'None
-   Caption         =   "Form2"
    ClientHeight    =   3060
    ClientLeft      =   20550
    ClientTop       =   60
@@ -21,12 +20,12 @@ Begin VB.Form Form2
       Width           =   8055
    End
 End
-Attribute VB_Name = "Form2"
+Attribute VB_Name = "frmContainer"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Form_Load()
 Me.Width = DanmakuWidth
-Label1.Caption = Form1.txtDanmaku.Text
+Label1.Caption = frmMain.txtDanmaku.Text
 End Sub
