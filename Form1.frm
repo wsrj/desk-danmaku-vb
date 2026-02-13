@@ -336,26 +336,32 @@ CommonDialog1.DialogTitle = "保存配置"
 CommonDialog1.DefaultExt = "*.ini"
 CommonDialog1.ShowSave
 file = CommonDialog1.FileName
+' 如果弹幕属性值都不为空
 If DanmakuFontSize <> "" And DanmakuFontText <> "" And DanmakuColor <> "" Then
+    ' 写入四个属性值
     ResultWriteFont = WritePrivateProfileStringA("danmaku", "font", DanmakuFontName, file)
     ResultWriteSize = WritePrivateProfileStringA("danmaku", "size", DanmakuFontSize, file)
     ResultWriteWidth = WritePrivateProfileStringA("danmaku", "width", DanmakuWidth, file)
     ResultWriteColor = WritePrivateProfileStringA("danmaku", "color", DanmakuColor, file)
+    ' 如果返回值都不为 0 则成功
     If ResultWriteFont <> 0 And ResultWriteSize <> 0 And ResultWriteWidth <> 0 And ResultWriteColor <> 0 Then
         MsgBox "保存配置成功！", vbInformation + vbOKOnly, "成功"
     Else
         MsgBox "保存配置失败 (ResultWriteFont=" & ResultWriteFont & ", ResultWriteSize=" & ResultWriteSize & "ResultWriteColor=" & ResultWriteColor & ")", vbCritical, "失败"
     End If
 Else
+    ' 如果有空的则弹出提示
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
 End If
 End Sub
 
 Private Sub sldWidth_Change()
+' 如果值小于 100 则自动更改为 100
 If sldWidth.Value < 100 Then
     sldWidth.Value = 100
 End If
 sldWidth.SelStart = 0
+' 设置填充部分长度
 sldWidth.SelLength = sldWidth.Value
 DanmakuWidth = sldWidth.Value
 txtWidth.Text = DanmakuWidth
@@ -366,6 +372,7 @@ End Sub
 Sub Timer1_Timer()
 sldWidth.Enabled = False
 btnSend.Enabled = False
+' 每个时钟周期向左移动 50 像素
 frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
 If frmContainer.Left < 0 - frmContainer.Width Then
     frmMain.Timer1.Enabled = False
