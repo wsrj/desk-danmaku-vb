@@ -27,5 +27,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Form_Load()
 Me.Width = DanmakuWidth
+Me.Height = Screen.Height - Screen.Height / 20
 Label1.Caption = frmMain.txtDanmaku.Text
 End Sub

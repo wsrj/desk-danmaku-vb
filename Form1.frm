@@ -364,10 +364,14 @@ frmContainer.Label1.Width = DanmakuWidth
 End Sub
 
 Sub Timer1_Timer()
+sldWidth.Enabled = False
+btnSend.Enabled = False
 frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
 If frmContainer.Left < 0 - frmContainer.Width Then
     frmMain.Timer1.Enabled = False
     Unload frmContainer
+    sldWidth.Enabled = True
+    btnSend.Enabled = True
 End If
 End Sub
 
