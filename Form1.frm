@@ -50,6 +50,7 @@ Begin VB.Form frmMain
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   2
             AutoSize        =   2
+            Enabled         =   0   'False
             Object.Width           =   1032
             MinWidth        =   176
             Text            =   "NumLk"
@@ -69,14 +70,14 @@ Begin VB.Form frmMain
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/2/13"
+            TextSave        =   "2026/2/22"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "21:20"
+            TextSave        =   "11:21"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -250,7 +251,7 @@ Begin VB.Form frmMain
    End
    Begin VB.Label Label1 
       Appearance      =   0  'Flat
-      BackColor       =   &H80000005&
+      BackColor       =   &H00000000&
       BackStyle       =   0  'Transparent
       Caption         =   "桌面弹幕"
       BeginProperty Font 
@@ -263,10 +264,10 @@ Begin VB.Form frmMain
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00993300&
-      Height          =   495
+      Height          =   375
       Left            =   240
       TabIndex        =   0
-      Top             =   240
+      Top             =   120
       Width           =   6615
    End
    Begin VB.Menu mnuFile 
@@ -451,10 +452,10 @@ fraAppearance.Enabled = False
 sldWidth.Enabled = False
 btnSend.Enabled = False
 ' 每个时钟周期向左移动 50 像素
-frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
-If frmContainer.Left < 0 - frmContainer.Width Then
+frmContainer.Move frmContainer.left - 50, Screen.Height / 20
+If frmContainer.left < 0 - frmContainer.Width Then
     frmMain.Timer1.Enabled = False
-    frmContainer.Left = Screen.Width ' 移动回初始位置
+    frmContainer.left = Screen.Width ' 移动回初始位置
     fraAppearance.Enabled = True
     sldWidth.Enabled = True
     btnSend.Enabled = True

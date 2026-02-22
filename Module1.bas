@@ -43,10 +43,7 @@ End Type
 'Const LWA_ALPHA = &H2
 
 Sub Main()
-Dim mg As Margins
-mg.left = mg.right = mg.top = mg.bottom = -1
 frmMain.Show
-DwmExtendFrameIntoClientArea frmMain.hWnd, m
 frmContainer.Show
 frmContainer.Move Screen.Width, Screen.Height / 20
 frmMain.Timer1.Interval = 10

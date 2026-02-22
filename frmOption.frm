@@ -1,6 +1,7 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmEgg 
+   BackColor       =   &H00000000&
    BorderStyle     =   5  'Sizable ToolWindow
    Caption         =   "彩蛋"
    ClientHeight    =   5055
@@ -60,6 +61,8 @@ Begin VB.Form frmEgg
       EndProperty
    End
    Begin VB.Shape Shape1 
+      BackStyle       =   1  'Opaque
+      BorderColor     =   &H80000005&
       Height          =   375
       Left            =   0
       Top             =   0
@@ -79,26 +82,26 @@ staBottom.Panels(2).Text = Chr(KeyAscii)
 ' …
 ' 按下向上
 If Chr(KeyAscii) = "W" Or Chr(KeyAscii) = "w" Then
-    If Shape1.Top >= 0 Then
-        Shape1.Top = Shape1.Top - 20
+    If Shape1.top >= 0 Then
+        Shape1.top = Shape1.top - 20
     End If
     CheckPos Shape1
 ' 按下向下
 ElseIf Chr(KeyAscii) = "S" Or Chr(KeyAscii) = "s" Then
-    If Shape1.Top <= Me.Height - Shape1.Height Then
-        Shape1.Top = Shape1.Top + 20
+    If Shape1.top <= Me.Height - Shape1.Height Then
+        Shape1.top = Shape1.top + 20
     End If
     CheckPos Shape1
 ' 按下向左
 ElseIf Chr(KeyAscii) = "A" Or Chr(KeyAscii) = "a" Then
-    If Shape1.Left >= 0 Then
-        Shape1.Left = Shape1.Left - 20
+    If Shape1.left >= 0 Then
+        Shape1.left = Shape1.left - 20
     End If
     CheckPos Shape1
 ' 按下向右
 ElseIf Chr(KeyAscii) = "D" Or Chr(KeyAscii) = "d" Then
-    If Shape1.Left < Me.Width - Shape1.Width Then
-        Shape1.Left = Shape1.Left + 20
+    If Shape1.left < Me.Width - Shape1.Width Then
+        Shape1.left = Shape1.left + 20
     End If
     CheckPos Shape1
 End If
@@ -106,23 +109,29 @@ End Sub
 
 Private Function CheckPos(Object As Object)
 ' 检查左边距
-If Object.Left < 0 Then
-    Object.Left = 0
+If Object.left < 0 Then
+    Object.left = 0
     staBottom.Panels(3).Text = "超出窗口范围"
-ElseIf Object.Left > Me.Width - Object.Width Then
-    Object.Left = Me.Width - Object.Width
+ElseIf Object.left > Me.Width - Object.Width Then
+    Object.left = Me.Width - Object.Width
     staBottom.Panels(3).Text = "超出窗口范围"
 Else
     staBottom.Panels(3).Text = "使用 [W] [A] [S] [D] 操控"
 End If
 ' 检查顶边距
-If Object.Top < 0 Then
-    Object.Top = 0
+If Object.top < 0 Then
+    Object.top = 0
     staBottom.Panels(3).Text = "超出窗口范围"
-ElseIf Object.Top > Me.Height - Object.Height - staBottom.Height Then
-    Object.Top = Me.Height - Object.Height - staBottom.Height
+ElseIf Object.top > Me.Height - Object.Height - staBottom.Height Then
+    Object.top = Me.Height - Object.Height - staBottom.Height
     staBottom.Panels(3).Text = "超出窗口范围"
 Else
     staBottom.Panels(3).Text = "使用 [W] [A] [S] [D] 操控"
 End If
 End Function
+
+Private Sub Form_Load()
+Dim mg As Margins
+mg.top = -1
+DwmExtendFrameIntoClientArea Me.hWnd, mg
+End Sub
