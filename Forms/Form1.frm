@@ -62,7 +62,7 @@ Begin VB.Form frmMain
       End
       Begin VB.Label Label5 
          Caption         =   "注：长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度。"
-         Height          =   615
+         Height          =   495
          Left            =   360
          TabIndex        =   16
          Top             =   1680
@@ -121,7 +121,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "17:22"
+            TextSave        =   "17:25"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -273,7 +273,7 @@ Begin VB.Form frmMain
       Height          =   375
       Left            =   240
       TabIndex        =   0
-      Top             =   120
+      Top             =   240
       Width           =   6615
    End
    Begin VB.Menu mnuFile 
