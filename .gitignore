@@ -3,3 +3,4 @@ MSSCCPRJ.SCC
 *.exe
 *.EXE
 *.scc
+Output\*
