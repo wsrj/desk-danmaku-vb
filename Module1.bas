@@ -29,20 +29,20 @@ Public Declare Function SetLayeredWindowAttributes Lib "user32" ( _
     ByVal crKey As Long, _
     ByVal bAlph As Byte, _
     ByVal dwFlags As Long) As Long
-Public Declare Function DwmExtendFrameIntoClientArea Lib "dwmapi" ( _
-    ByVal hWnd As Long, _
-    ByRef Margins As Margins) As Long
-Public Type Margins
-    left As Long
-    right As Long
-    top As Long
-    bottom As Long
-End Type
+'Public Declare Function DwmExtendFrameIntoClientArea Lib "dwmapi" ( _
+'    ByVal hWnd As Long, _
+'    ByRef Margins As Margins) As Long
+'Public Type Margins
+'    left As Long
+'    right As Long
+'    top As Long
+'    bottom As Long
+'End Type
 'Const GWL_EXSTYLE = (-20)
 'Const WS_EX_LAYERED = &H80000
 'Const LWA_ALPHA = &H2
 
-Sub Main()
+Public Sub Main()
 frmMain.Show
 frmContainer.Show
 frmContainer.Move Screen.Width, Screen.Height / 20

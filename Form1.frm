@@ -4,10 +4,10 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmMain 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "弹幕神器"
-   ClientHeight    =   5745
+   ClientHeight    =   7290
    ClientLeft      =   5910
    ClientTop       =   3150
-   ClientWidth     =   7065
+   ClientWidth     =   7080
    BeginProperty Font 
       Name            =   "微软雅黑"
       Size            =   9
@@ -19,20 +19,65 @@ Begin VB.Form frmMain
    EndProperty
    ForeColor       =   &H00000000&
    LinkTopic       =   "Form1"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5745
-   ScaleWidth      =   7065
+   ScaleHeight     =   7290
+   ScaleWidth      =   7080
    ShowInTaskbar   =   0   'False
+   Begin VB.Frame fraWidth 
+      Caption         =   "弹幕最大宽度（单位：二十分之一点）"
+      Height          =   2535
+      Left            =   240
+      TabIndex        =   13
+      Top             =   3600
+      Width           =   6615
+      Begin VB.TextBox txtWidth 
+         Appearance      =   0  'Flat
+         BackColor       =   &H8000000F&
+         BorderStyle     =   0  'None
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   360
+         Locked          =   -1  'True
+         TabIndex        =   15
+         ToolTipText     =   "弹幕最大能达到多宽，如果超出该值就会换行"
+         Top             =   480
+         Width           =   6015
+      End
+      Begin MSComctlLib.Slider sldWidth 
+         Height          =   615
+         Left            =   240
+         TabIndex        =   14
+         ToolTipText     =   "长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度"
+         Top             =   840
+         Width           =   6135
+         _ExtentX        =   10821
+         _ExtentY        =   1085
+         _Version        =   393216
+         Max             =   1000
+         SelectRange     =   -1  'True
+         TickStyle       =   2
+         Value           =   100
+      End
+      Begin VB.Label Label5 
+         BackStyle       =   0  'Transparent
+         Caption         =   "弹幕最大宽度"
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Left            =   120
+         TabIndex        =   16
+         Top             =   1800
+         Width           =   1455
+      End
+   End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
       Height          =   375
       Left            =   0
-      TabIndex        =   15
-      Top             =   5370
-      Width           =   7065
-      _ExtentX        =   12462
+      TabIndex        =   12
+      Top             =   6915
+      Width           =   7080
+      _ExtentX        =   12488
       _ExtentY        =   661
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -70,14 +115,14 @@ Begin VB.Form frmMain
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/2/22"
+            TextSave        =   "2026/3/7"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "11:21"
+            TextSave        =   "16:12"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -99,8 +144,8 @@ Begin VB.Form frmMain
       Caption         =   "发送(&E)"
       Height          =   495
       Left            =   5280
-      TabIndex        =   12
-      Top             =   4800
+      TabIndex        =   10
+      Top             =   6240
       Width           =   1575
    End
    Begin MSComDlg.CommonDialog CommonDialog1 
@@ -112,39 +157,11 @@ Begin VB.Form frmMain
    End
    Begin VB.Frame fraAppearance 
       Caption         =   "外观"
-      Height          =   3735
+      Height          =   2655
       Left            =   240
       TabIndex        =   1
       Top             =   840
       Width           =   6615
-      Begin MSComctlLib.Slider sldWidth 
-         Height          =   615
-         Left            =   3840
-         TabIndex        =   13
-         ToolTipText     =   "长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度"
-         Top             =   2760
-         Width           =   2535
-         _ExtentX        =   4471
-         _ExtentY        =   1085
-         _Version        =   393216
-         Max             =   1000
-         SelectRange     =   -1  'True
-         TickStyle       =   2
-         Value           =   100
-      End
-      Begin VB.TextBox txtWidth 
-         Appearance      =   0  'Flat
-         BackColor       =   &H8000000F&
-         BorderStyle     =   0  'None
-         ForeColor       =   &H00000000&
-         Height          =   375
-         Left            =   1800
-         Locked          =   -1  'True
-         TabIndex        =   11
-         ToolTipText     =   "弹幕最大能达到多宽，如果超出该值就会换行"
-         Top             =   2880
-         Width           =   1335
-      End
       Begin VB.TextBox txtColor 
          Appearance      =   0  'Flat
          BackColor       =   &H8000000F&
@@ -163,7 +180,7 @@ Begin VB.Form frmMain
          Height          =   495
          Left            =   4560
          TabIndex        =   8
-         Top             =   1920
+         Top             =   1800
          Width           =   1575
       End
       Begin VB.TextBox txtFont 
@@ -196,24 +213,14 @@ Begin VB.Form frmMain
          Top             =   480
          Width           =   4335
       End
-      Begin VB.Label Label5 
-         BackStyle       =   0  'Transparent
-         Caption         =   "弹幕最大宽度"
-         ForeColor       =   &H00000000&
-         Height          =   375
-         Left            =   240
-         TabIndex        =   10
-         Top             =   2880
-         Width           =   1455
-      End
       Begin VB.Label Label4 
          BackStyle       =   0  'Transparent
          Caption         =   "弹幕颜色"
          ForeColor       =   &H00000000&
-         Height          =   375
+         Height          =   255
          Left            =   240
          TabIndex        =   7
-         Top             =   2040
+         Top             =   1920
          Width           =   1095
       End
       Begin VB.Label Label3 
@@ -222,7 +229,7 @@ Begin VB.Form frmMain
          BackStyle       =   0  'Transparent
          Caption         =   "弹幕字体"
          ForeColor       =   &H00000000&
-         Height          =   375
+         Height          =   255
          Left            =   240
          TabIndex        =   4
          Top             =   1200
@@ -234,7 +241,7 @@ Begin VB.Form frmMain
          BackStyle       =   0  'Transparent
          Caption         =   "弹幕文字"
          ForeColor       =   &H00000000&
-         Height          =   375
+         Height          =   255
          Left            =   240
          TabIndex        =   2
          Top             =   480
@@ -245,7 +252,7 @@ Begin VB.Form frmMain
       BackStyle       =   0  'Transparent
       Height          =   495
       Left            =   240
-      TabIndex        =   14
+      TabIndex        =   11
       Top             =   4800
       Width           =   4815
    End

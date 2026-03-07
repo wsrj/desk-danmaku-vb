@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmEgg 
-   BackColor       =   &H00000000&
+   BackColor       =   &H80000005&
    BorderStyle     =   5  'Sizable ToolWindow
    Caption         =   "²Êµ°"
    ClientHeight    =   5055
@@ -62,7 +62,7 @@ Begin VB.Form frmEgg
    End
    Begin VB.Shape Shape1 
       BackStyle       =   1  'Opaque
-      BorderColor     =   &H80000005&
+      BorderColor     =   &H00000000&
       Height          =   375
       Left            =   0
       Top             =   0
@@ -130,8 +130,3 @@ Else
 End If
 End Function
 
-Private Sub Form_Load()
-Dim mg As Margins
-mg.top = -1
-DwmExtendFrameIntoClientArea Me.hWnd, mg
-End Sub
