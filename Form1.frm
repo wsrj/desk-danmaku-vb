@@ -4,7 +4,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmMain 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "弹幕神器"
-   ClientHeight    =   7290
+   ClientHeight    =   6720
    ClientLeft      =   5910
    ClientTop       =   3150
    ClientWidth     =   7080
@@ -21,12 +21,12 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7290
+   ScaleHeight     =   6720
    ScaleWidth      =   7080
    ShowInTaskbar   =   0   'False
    Begin VB.Frame fraWidth 
       Caption         =   "弹幕最大宽度（单位：二十分之一点）"
-      Height          =   2535
+      Height          =   1815
       Left            =   240
       TabIndex        =   13
       Top             =   3600
@@ -59,23 +59,13 @@ Begin VB.Form frmMain
          TickStyle       =   2
          Value           =   100
       End
-      Begin VB.Label Label5 
-         BackStyle       =   0  'Transparent
-         Caption         =   "弹幕最大宽度"
-         ForeColor       =   &H00000000&
-         Height          =   255
-         Left            =   120
-         TabIndex        =   16
-         Top             =   1800
-         Width           =   1455
-      End
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
       Height          =   375
       Left            =   0
       TabIndex        =   12
-      Top             =   6915
+      Top             =   6345
       Width           =   7080
       _ExtentX        =   12488
       _ExtentY        =   661
@@ -122,7 +112,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "16:12"
+            TextSave        =   "16:29"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -145,7 +135,7 @@ Begin VB.Form frmMain
       Height          =   495
       Left            =   5280
       TabIndex        =   10
-      Top             =   6240
+      Top             =   5640
       Width           =   1575
    End
    Begin MSComDlg.CommonDialog CommonDialog1 
@@ -167,12 +157,12 @@ Begin VB.Form frmMain
          BackColor       =   &H8000000F&
          BorderStyle     =   0  'None
          ForeColor       =   &H00000000&
-         Height          =   375
+         Height          =   255
          Left            =   1800
          Locked          =   -1  'True
          TabIndex        =   9
          ToolTipText     =   "你选择的颜色"
-         Top             =   2040
+         Top             =   1920
          Width           =   2535
       End
       Begin VB.CommandButton btnColorPicker 
@@ -187,7 +177,7 @@ Begin VB.Form frmMain
          BackColor       =   &H8000000F&
          BorderStyle     =   0  'None
          ForeColor       =   &H00000000&
-         Height          =   375
+         Height          =   255
          Left            =   1800
          Locked          =   -1  'True
          TabIndex        =   6
@@ -335,7 +325,7 @@ sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
 sldWidth.Value = 100
 frmContainer.Width = 100
-txtWidth.Text = 100
+txtWidth.Text = "100 twip"
 Timer1.Enabled = False
 End Sub
 
@@ -449,7 +439,7 @@ sldWidth.SelStart = 0
 ' 设置填充部分长度
 sldWidth.SelLength = sldWidth.Value
 DanmakuWidth = sldWidth.Value
-txtWidth.Text = DanmakuWidth
+txtWidth.Text = DanmakuWidth & " twip"
 frmContainer.Width = DanmakuWidth
 frmContainer.Label1.Width = DanmakuWidth
 End Sub

@@ -8,6 +8,7 @@ Object={831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0; MSCOMCTL.OCX
 Module=Module1; Module1.bas
 Object={02B5E320-7292-11CF-93D5-0020AF99504A}#1.1#0; MSCHART.OCX
 Form=frmOption.frm
+ResFile32="µ¯Ä»ÉñÆ÷.RES"
 IconForm="frmMain"
 Startup="Sub Main"
 HelpFile=""
