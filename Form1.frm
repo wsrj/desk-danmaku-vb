@@ -18,6 +18,7 @@ Begin VB.Form frmMain
       Strikethrough   =   0   'False
    EndProperty
    ForeColor       =   &H00000000&
+   Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -112,7 +113,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "16:29"
+            TextSave        =   "16:52"
             Object.ToolTipText     =   "Ê±¼ä"
          EndProperty
       EndProperty
