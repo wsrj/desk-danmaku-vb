@@ -4,7 +4,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmMain 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "弹幕神器"
-   ClientHeight    =   6720
+   ClientHeight    =   7335
    ClientLeft      =   5910
    ClientTop       =   3150
    ClientWidth     =   7080
@@ -22,12 +22,12 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6720
+   ScaleHeight     =   7335
    ScaleWidth      =   7080
    ShowInTaskbar   =   0   'False
    Begin VB.Frame fraWidth 
       Caption         =   "弹幕最大宽度（单位：二十分之一点）"
-      Height          =   1815
+      Height          =   2535
       Left            =   240
       TabIndex        =   13
       Top             =   3600
@@ -60,13 +60,21 @@ Begin VB.Form frmMain
          TickStyle       =   2
          Value           =   100
       End
+      Begin VB.Label Label5 
+         Caption         =   "注：长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度。"
+         Height          =   615
+         Left            =   360
+         TabIndex        =   16
+         Top             =   1680
+         Width           =   5895
+      End
    End
    Begin MSComctlLib.StatusBar StatusBar1 
       Align           =   2  'Align Bottom
       Height          =   375
       Left            =   0
       TabIndex        =   12
-      Top             =   6345
+      Top             =   6960
       Width           =   7080
       _ExtentX        =   12488
       _ExtentY        =   661
@@ -113,7 +121,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "16:52"
+            TextSave        =   "17:22"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -136,7 +144,7 @@ Begin VB.Form frmMain
       Height          =   495
       Left            =   5280
       TabIndex        =   10
-      Top             =   5640
+      Top             =   6240
       Width           =   1575
    End
    Begin MSComDlg.CommonDialog CommonDialog1 
@@ -450,10 +458,10 @@ fraAppearance.Enabled = False
 sldWidth.Enabled = False
 btnSend.Enabled = False
 ' 每个时钟周期向左移动 50 像素
-frmContainer.Move frmContainer.left - 50, Screen.Height / 20
-If frmContainer.left < 0 - frmContainer.Width Then
+frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
+If frmContainer.Left < 0 - frmContainer.Width Then
     frmMain.Timer1.Enabled = False
-    frmContainer.left = Screen.Width ' 移动回初始位置
+    frmContainer.Left = Screen.Width ' 移动回初始位置
     fraAppearance.Enabled = True
     sldWidth.Enabled = True
     btnSend.Enabled = True
