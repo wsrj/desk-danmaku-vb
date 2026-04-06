@@ -9,7 +9,7 @@
 
 <img width="600px" alt="主界面" src="https://github.com/user-attachments/assets/b8e1133f-578a-4c9f-acb4-a6a77ddacf4b" />
 
-## 系统要求
+<!-- ## 系统要求
 
 建议在 Windows XP 以上系统运行。
 最低配置：
@@ -17,7 +17,7 @@
 - **系统**：Windows 2000
 - **CPU**: Intel (R) Pentium
 - **RAM**: 128 MB
-- **可用硬盘空间**：8 MB
+- **可用硬盘空间**：8 MB -->
 
 ## 编译
 
