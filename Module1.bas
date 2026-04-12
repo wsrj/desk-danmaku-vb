@@ -93,3 +93,11 @@ ElseIf printTime = False Then
 End If
 Close #1
 End Sub
+
+Public Function ReadXML(xmlFile As String, node As String) As String
+Dim xmlDoc As MSXML2.DOMDocument60
+Set xmlDoc = New MSXML2.DOMDocument60
+xmlDoc.Load xmlFile
+ReadXML = xmlDoc.selectSingleNode(node)
+Set xmlDoc = Nothing
+End Function
