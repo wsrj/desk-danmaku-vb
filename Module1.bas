@@ -83,21 +83,27 @@ frmContainer.Move Screen.Width, Screen.Height / 20
 frmMain.Timer1.Interval = 10
 End Sub
 
-Public Sub ConOut(Text As String, Optional printTime As Boolean = True)
+Public Sub ConOut(text As String, Optional printTime As Boolean = True)
 If Not ShowConsole Then Exit Sub
 Open "CONOUT$" For Output As #1
 If printTime = True Then
-    Print #1, "[" & Now & "] " & Text
+    Print #1, "[" & Now & "] " & text
 ElseIf printTime = False Then
-    Print #1, Text
+    Print #1, text
 End If
 Close #1
 End Sub
 
-Public Function ReadXML(xmlFile As String, node As String) As String
-Dim xmlDoc As MSXML2.DOMDocument60
+Public Function ReadXML(xmlFile As String, nodeName As String) As String
+Dim xmlDoc As MSXML2.DOMDocument60, node As Object
 Set xmlDoc = New MSXML2.DOMDocument60
 xmlDoc.Load xmlFile
-ReadXML = xmlDoc.selectSingleNode(node).Text
-Set xmlDoc = Nothing
+Set node = xmlDoc.selectSingleNode(nodeName)
+If Not node Is Nothing Then
+    ReadXML = node.text
+    Set xmlDoc = Nothing
+    Exit Function
+Else
+    MsgBox "配置文件格式不正确。", vbOKOnly + vbCritical, "错误"
+End If
 End Function

@@ -121,7 +121,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "15:59"
+            TextSave        =   "16:08"
             Object.ToolTipText     =   "Ê±¼ä"
          EndProperty
       EndProperty
@@ -439,7 +439,8 @@ CommonDialog1.DefaultExt = "*.xml"
 CommonDialog1.ShowOpen
 file = CommonDialog1.FileName
 If file = "" Or file = " " Then Exit Sub
-MsgBox ReadXML(file, "/config/text")
+txtDanmaku.Text = ReadXML(file, "/config/text")
+
 End Sub
 
 Private Sub mnuSave_Click()
