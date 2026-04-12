@@ -2,9 +2,20 @@
 Most Recent Package=µ¯Ä»ÉñÆ÷
 
 
+[Package|µ¯Ä»ÉñÆ÷|IconGroups]
+Group0=µ¯Ä»ÉñÆ÷
+PrivateGroup0=True
+Parent0=$(Programs)
+
+[Package|µ¯Ä»ÉñÆ÷|µ¯Ä»ÉñÆ÷]
+Icon1=µ¯Ä»ÉñÆ÷.exe
+Title1=µ¯Ä»ÉñÆ÷
+StartIn1=$(AppPath)
+Key1=Icon1
+
 [Package|µ¯Ä»ÉñÆ÷|Root]
 SubWizProgID=PDWizard.SetupPkgSubWiz
-BuildFolder=C:\Users\123\Desktop\danmaku-pack
+BuildFolder=C:\Users\123\Documents\code\files_vbdanmaku\v1.3.3
 
 [Package|µ¯Ä»ÉñÆ÷|Configure DAO ISAMs]
 Applicable=No
@@ -22,15 +33,18 @@ C:\Program Files (x86)\VB6Mini\lib\microsoft\MSCHART.OCX=
 C:\Program Files (x86)\VB6Mini\lib\microsoft\MSCOMCTL.OCX=
 C:\Program Files (x86)\VB6Mini\lib\microsoft\COMDLG32.OCX=
 C:\Windows\System32\wmp.dll=
+C:\Windows\SysWOW64\MSCHART.OCX=
 
 [Package|µ¯Ä»ÉñÆ÷|Out-of-Date Dependency Information]
+C:\Windows\SysWOW64\MSCOMCTL.OCX=
+C:\Windows\SysWOW64\COMDLG32.OCX=
 
 [Package|µ¯Ä»ÉñÆ÷|Files Added]
 
 [Package|µ¯Ä»ÉñÆ÷|Files Removed]
 
 [Package|µ¯Ä»ÉñÆ÷|Files In Project]
-C:\Users\123\Desktop\µ¯Ä»ÉñÆ÷.exe=Yes
+C:\Users\123\Documents\code\desk-danmaku-vb\Output\µ¯Ä»ÉñÆ÷.exe=Yes
 C:\Windows\System32\msvbvm60.dll=Yes
 C:\Windows\System32\oleaut32.dll=Yes
 C:\Windows\System32\olepro32.dll=Yes
@@ -39,13 +53,15 @@ C:\Windows\System32\stdole2.tlb=Yes
 C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
 C:\Windows\System32\VB6CHS.DLL=Yes
 C:\Windows\System32\wmp.dll=Yes
-C:\Program Files (x86)\VB6Mini\lib\microsoft\COMDLG32.OCX=Yes
-C:\Program Files (x86)\VB6Mini\lib\microsoft\MSCOMCTL.OCX=Yes
-C:\Program Files (x86)\VB6Mini\lib\microsoft\MSCHART.OCX=Yes
 C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
 C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
 C:\Windows\System32\VB6STKIT.DLL=Yes
 C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\Windows\SysWOW64\COMDLG32.OCX=Yes
+C:\Windows\SysWOW64\CMDLGCHS.DLL=Yes
+C:\Windows\SysWOW64\MSCOMCTL.OCX=Yes
+C:\Windows\SysWOW64\MSCMCCHS.DLL=Yes
+C:\Windows\SysWOW64\MSCHART.OCX=Yes
 
 [Package|µ¯Ä»ÉñÆ÷|Configure Registry Files]
 Applicable=No
@@ -54,7 +70,7 @@ Applicable=No
 Applicable=No
 
 [Package|µ¯Ä»ÉñÆ÷|Install Locations]
-C:\Users\123\Desktop\µ¯Ä»ÉñÆ÷.exe=$(AppPath)
+C:\Users\123\Documents\code\desk-danmaku-vb\Output\µ¯Ä»ÉñÆ÷.exe=$(AppPath)
 C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
 C:\Windows\System32\oleaut32.dll=$(WinSysPathSysFile)
 C:\Windows\System32\olepro32.dll=$(WinSysPathSysFile)
@@ -70,10 +86,15 @@ C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$
 C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
 C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
 C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Windows\SysWOW64\COMDLG32.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\CMDLGCHS.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\MSCMCCHS.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\MSCHART.OCX=$(WinSysPath)
 
 [Package|µ¯Ä»ÉñÆ÷|Configure Shared Files]
 Applicable=Yes
-C:\Users\123\Desktop\µ¯Ä»ÉñÆ÷.exe=No
+C:\Users\123\Documents\code\desk-danmaku-vb\Output\µ¯Ä»ÉñÆ÷.exe=No
 C:\Windows\System32\wmp.dll=No
 
 [Package|µ¯Ä»ÉñÆ÷|Distribution]
@@ -81,23 +102,12 @@ Type=single
 Size=1.44 MB
 Title=µ¯Ä»ÉñÆ÷
 
-[Package|µ¯Ä»ÉñÆ÷|IconGroups]
-Group0=µ¯Ä»ÉñÆ÷
-PrivateGroup0=True
-Parent0=$(Programs)
-
-[Package|µ¯Ä»ÉñÆ÷|µ¯Ä»ÉñÆ÷]
-Icon1=µ¯Ä»ÉñÆ÷.exe
-Title1=µ¯Ä»ÉñÆ÷
-StartIn1=$(AppPath)
-Key1=Icon1
-
 [Package|µ¯Ä»ÉñÆ÷|Package]
-PackageFolder=C:\Users\123\Desktop\danmaku-pack
-ProjectFolder=C:\Users\123\Documents\desk-danmaku-vb
+PackageFolder=C:\Users\123\Documents\code\files_vbdanmaku\v1.3.3
+ProjectFolder=C:\Users\123\Documents\code\desk-danmaku-vb
 ServerSideCab=
-File1=C:\Users\123\Desktop\danmaku-pack\setup.exe
-File2=C:\Users\123\Desktop\danmaku-pack\Setup.Lst
-File3=C:\Users\123\Desktop\danmaku-pack\µ¯Ä»ÉñÆ÷.CAB
+File1=C:\Users\123\Documents\code\files_vbdanmaku\v1.3.3\setup.exe
+File2=C:\Users\123\Documents\code\files_vbdanmaku\v1.3.3\Setup.Lst
+File3=C:\Users\123\Documents\code\files_vbdanmaku\v1.3.3\µ¯Ä»ÉñÆ÷.CAB
 Handler1=PDWizard.FolderDplySubWiz
 Handler2=PDWizard.WebPostDplySubWiz

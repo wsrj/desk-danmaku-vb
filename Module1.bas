@@ -42,6 +42,7 @@ Public DanmakuFontSize '字号变量
 Public DanmakuFontText '显示字体文本
 Public ShowEgg As Long
 Public Cmd As String
+Public ShowConsole As Boolean
 
 'Const GWL_EXSTYLE = (-20)
 'Const WS_EX_LAYERED = &H80000
@@ -55,18 +56,24 @@ Public Sub Main()
 Cmd = Command
 Select Case Cmd
     Case "/?", "-?", "-h", "--help"
+        ShowConsole = False
         MsgBox HELP_TEXT, vbOKOnly + vbInformation, "弹幕神器"
         End
     Case "/C", "/c", "-c", "--console"
         'MsgBox "这个功能还在开发……"
+        ShowConsole = True
         AllocConsole
         SetConsoleTitleA "控制台 - 弹幕神器"
         ConOut "欢迎使用弹幕神器！", False
     Case ""
+        ShowConsole = False
     Case Else
         Select Case MsgBox("参数不正确。" & vbCrLf & HELP_TEXT & vbCrLf & vbCrLf & "是否打开主界面？", vbYesNo + vbCritical, "错误 - 弹幕神器")
             Case vbYes
+                ShowConsole = False
             Case vbNo
+                ShowConsole = False
+                MsgBox HELP_TEXT, vbOKOnly + vbInformation, "帮助"
                 End
         End Select
 End Select
@@ -77,6 +84,7 @@ frmMain.Timer1.Interval = 10
 End Sub
 
 Public Sub ConOut(Text As String, Optional printTime As Boolean = True)
+If Not ShowConsole Then Exit Sub
 Open "CONOUT$" For Output As #1
 If printTime = True Then
     Print #1, "[" & Now & "] " & Text
