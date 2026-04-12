@@ -121,7 +121,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "16:58"
+            TextSave        =   "19:14"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -322,8 +322,8 @@ If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
     frmContainer.Move Screen.Width, 0
     Timer1.Enabled = True
     ConOut "发送弹幕：Text=" & txtDanmaku.text & _
-        ", Color=" & DanmakuColor & _
-        ", Font=" & DanmakuFontName & "," & DanmakuFontSize
+           ", Color=" & DanmakuColor & _
+           ", Font=" & DanmakuFontName & "," & DanmakuFontSize
 Else
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
     ConOut "错误：缺少必填项"
@@ -451,27 +451,35 @@ frmContainer.Label1.FontSize = DanmakuFontSize
 End Sub
 
 Private Sub mnuSave_Click()
+Dim xmlDoc As msxml2.DOMDocument60
+Dim nodeConfig, nodeText, nodeColor, nodeFont, nodeFontSize, nodeFontName
 Dim file As String
-Dim ResultWriteFont, ResultWriteSize, ResultWriteWidth, ResultWriteColor
-CommonDialog1.DialogTitle = "保存配置(INI)"
-CommonDialog1.DefaultExt = "*.ini"
+Set xmlDoc = New msxml2.DOMDocument60
+CommonDialog1.DialogTitle = "保存配置(XML)"
+CommonDialog1.DefaultExt = "*.xml"
 CommonDialog1.ShowSave
 file = CommonDialog1.FileName
+If file = "" Or file = " " Then Exit Sub
 ' 如果弹幕属性值都不为空
 If DanmakuFontSize <> "" And DanmakuFontText <> "" And DanmakuColor <> "" Then
     ' 写入四个属性值
-    ResultWriteFont = WritePrivateProfileStringA("danmaku", "font", DanmakuFontName, file)
-    ResultWriteSize = WritePrivateProfileStringA("danmaku", "size", DanmakuFontSize, file)
-    ResultWriteWidth = WritePrivateProfileStringA("danmaku", "width", DanmakuWidth, file)
-    ResultWriteColor = WritePrivateProfileStringA("danmaku", "color", DanmakuColor, file)
-    ' 如果返回值都不为 0 则成功
-    If ResultWriteFont <> 0 And ResultWriteSize <> 0 And ResultWriteWidth <> 0 And ResultWriteColor <> 0 Then
-        MsgBox "保存配置成功！", vbInformation + vbOKOnly, "成功"
-        ConOut "保存的配置：" & file
-    Else
-        MsgBox "保存配置失败 (ResultWriteFont=" & ResultWriteFont & ", ResultWriteSize=" & ResultWriteSize & "ResultWriteColor=" & ResultWriteColor & ")", vbCritical, "失败"
-        ConOut "错误：保存配置失败"
-    End If
+    Set nodeConfig = xmlDoc.createElement("config")
+    xmlDoc.appendChild nodeConfig
+    Set nodeText = xmlDoc.createElement("text")
+    nodeText.text = txtDanmaku.text
+    nodeConfig.appendChild nodeText
+    Set nodeColor = xmlDoc.createElement("color")
+    nodeColor.text = DanmakuColor
+    nodeConfig.appendChild nodeColor
+    Set nodeFont = xmlDoc.createElement("font")
+    nodeConfig.appendChild nodeFont
+    Set nodeFontSize = xmlDoc.createElement("size")
+    nodeFontSize.text = DanmakuFontSize
+    nodeFont.appendChild nodeFontSize
+    Set nodeFontName = xmlDoc.createElement("name")
+    nodeFontName.text = DanmakuFontName
+    nodeFont.appendChild nodeFontName
+    xmlDoc.save file
 Else
     ' 如果有空的则弹出提示
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
@@ -495,17 +503,17 @@ frmContainer.Label1.Width = DanmakuWidth
 End Sub
 
 Sub Timer1_Timer()
-fraAppearance.Enabled = False
-sldWidth.Enabled = False
-btnSend.Enabled = False
+'fraAppearance.Enabled = False
+'sldWidth.Enabled = False
+'btnSend.Enabled = False
 ' 每个时钟周期向左移动 50 像素
 frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
 If frmContainer.Left < 0 - frmContainer.Width Then
-    frmMain.Timer1.Enabled = False
+'    frmMain.Timer1.Enabled = False
     frmContainer.Left = Screen.Width ' 移动回初始位置
-    fraAppearance.Enabled = True
-    sldWidth.Enabled = True
-    btnSend.Enabled = True
+'    fraAppearance.Enabled = True
+'    sldWidth.Enabled = True
+'    btnSend.Enabled = True
 End If
 End Sub
 
