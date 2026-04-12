@@ -98,6 +98,6 @@ Public Function ReadXML(xmlFile As String, node As String) As String
 Dim xmlDoc As MSXML2.DOMDocument60
 Set xmlDoc = New MSXML2.DOMDocument60
 xmlDoc.Load xmlFile
-ReadXML = xmlDoc.selectSingleNode(node)
+ReadXML = xmlDoc.selectSingleNode(node).Text
 Set xmlDoc = Nothing
 End Function

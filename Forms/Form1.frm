@@ -114,14 +114,14 @@ Begin VB.Form frmMain
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/3/21"
+            TextSave        =   "2026/4/12"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "18:51"
+            TextSave        =   "15:59"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -278,6 +278,9 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnuFile 
       Caption         =   "文件(&F)"
+      Begin VB.Menu mnuOpen 
+         Caption         =   "打开(&O)"
+      End
       Begin VB.Menu mnuSave 
          Caption         =   "保存(&S)"
          Shortcut        =   ^S
@@ -429,10 +432,20 @@ End Sub
 'txtColor.Text = DanmakuColor
 'End Sub
 
+Private Sub mnuOpen_Click()
+Dim file As String
+CommonDialog1.DialogTitle = "打开配置(XML)"
+CommonDialog1.DefaultExt = "*.xml"
+CommonDialog1.ShowOpen
+file = CommonDialog1.FileName
+If file = "" Or file = " " Then Exit Sub
+MsgBox ReadXML(file, "/config/text")
+End Sub
+
 Private Sub mnuSave_Click()
 Dim file As String
 Dim ResultWriteFont, ResultWriteSize, ResultWriteWidth, ResultWriteColor
-CommonDialog1.DialogTitle = "保存配置"
+CommonDialog1.DialogTitle = "保存配置(INI)"
 CommonDialog1.DefaultExt = "*.ini"
 CommonDialog1.ShowSave
 file = CommonDialog1.FileName
