@@ -121,7 +121,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "19:22"
+            TextSave        =   "19:36"
             Object.ToolTipText     =   "Ê±¼ä"
          EndProperty
       EndProperty
@@ -376,7 +376,6 @@ End Sub
 Private Sub Form_Unload(Cancel As Integer)
 ConOut "½áÊø"
 If ShowConsole Then FreeConsole
-End If
 End
 End Sub
 
