@@ -121,7 +121,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "19:14"
+            TextSave        =   "19:22"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -325,8 +325,8 @@ If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
            ", Color=" & DanmakuColor & _
            ", Font=" & DanmakuFontName & "," & DanmakuFontSize
 Else
-    MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
     ConOut "错误：缺少必填项"
+    MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
 End If
 End Sub
 
@@ -368,14 +368,15 @@ If DanmakuFontName <> " " And DanmakuFontName <> "" And DanmakuFontSize <> "" Th
     frmContainer.Label1.FontSize = DanmakuFontSize
     ConOut "选择了字体：" & DanmakuFontName & "," & DanmakuFontSize
 Else
-    MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
     ConOut "错误：缺少必填项"
+    MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
 End If
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
 ConOut "结束"
-FreeConsole
+If ShowConsole Then FreeConsole
+End If
 End
 End Sub
 
@@ -390,6 +391,7 @@ Egg ShowEgg
 End Sub
 
 Private Sub mnuAbout_Click()
+ConOut "打开“关于”对话框"
 ShellAboutA Me.hWnd, _
     "关于弹幕神器#弹幕神器", _
     "这是一个能在桌面上发弹幕的程序！" & vbCrLf & _
@@ -398,18 +400,18 @@ ShellAboutA Me.hWnd, _
     "software.wsrj@outlook.com" & vbCrLf & _
     "https://github.com/wsrj", _
     Me.Icon.Handle
-ConOut "打开“关于”对话框"
 End Sub
 
 Private Sub mnuContact_Click()
-MsgBox "请访问 https://space.bilibili.com/3493134929496963", vbInformation + vbOKOnly, "联系作者"
 ConOut "单击“联系作者”"
+MsgBox "请访问 https://space.bilibili.com/3493134929496963", vbInformation + vbOKOnly, "联系作者"
 End Sub
 
 Private Sub mnuExit_Click()
 ConOut "单击“退出”"
 End
 End Sub
+
 '下面这坨使就让它封存吧
 'Private Sub mnuOpen_Click()
 'CommonDialog1.ShowOpen
@@ -448,6 +450,7 @@ DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1
 txtFont.text = DanmakuFontText '在标签中显示字体
 frmContainer.Label1.FontName = DanmakuFontName
 frmContainer.Label1.FontSize = DanmakuFontSize
+ConOut "读取配置文件：" & file
 End Sub
 
 Private Sub mnuSave_Click()
@@ -480,8 +483,11 @@ If DanmakuFontSize <> "" And DanmakuFontText <> "" And DanmakuColor <> "" Then
     nodeFontName.text = DanmakuFontName
     nodeFont.appendChild nodeFontName
     xmlDoc.save file
+    ConOut "保存配置文件：" & file
+    MsgBox "已保存配置文件", vbOKOnly + vbInformation, "提示"
 Else
     ' 如果有空的则弹出提示
+    ConOut "错误：缺少必填项"
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
 End If
 End Sub
@@ -503,17 +509,17 @@ frmContainer.Label1.Width = DanmakuWidth
 End Sub
 
 Sub Timer1_Timer()
-'fraAppearance.Enabled = False
-'sldWidth.Enabled = False
-'btnSend.Enabled = False
+fraAppearance.Enabled = False
+sldWidth.Enabled = False
+btnSend.Enabled = False
 ' 每个时钟周期向左移动 50 像素
 frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
 If frmContainer.Left < 0 - frmContainer.Width Then
-'    frmMain.Timer1.Enabled = False
+    frmMain.Timer1.Enabled = False
     frmContainer.Left = Screen.Width ' 移动回初始位置
-'    fraAppearance.Enabled = True
-'    sldWidth.Enabled = True
-'    btnSend.Enabled = True
+    fraAppearance.Enabled = True
+    sldWidth.Enabled = True
+    btnSend.Enabled = True
 End If
 End Sub
 
