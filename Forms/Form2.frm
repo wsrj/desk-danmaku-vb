@@ -46,14 +46,22 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Option Explicit
+
 Private Sub Form_Load()
 ' 设置为分层窗口
 SetWindowLongA Me.hWnd, -20, GetWindowLongA(Me.hWnd, -20) Or 524288
 ' 设置透明度
 SetLayeredWindowAttributes Me.hWnd, vbWhite, 0, 1
-Me.Width = DanmakuWidth
+'Me.Width = DanmakuWidth
 Me.Height = Screen.Height - Screen.Height / 20
 Label1.Caption = frmMain.txtDanmaku.Text
+End Sub
+
+Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+If UnloadMode = vbFormControlMenu Then
+    Cancel = True
+End If
 End Sub
 
 Private Sub Form_Resize()

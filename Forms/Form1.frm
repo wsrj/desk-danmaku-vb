@@ -20,11 +20,12 @@ Begin VB.Form frmMain
    ForeColor       =   &H00000000&
    Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7335
-   ScaleWidth      =   7080
-   ShowInTaskbar   =   0   'False
+   ScaleHeight     =   489
+   ScaleMode       =   3  'Pixel
+   ScaleWidth      =   472
    Begin VB.Frame fraWidth 
       Caption         =   "弹幕最大宽度（单位：二十分之一点）"
       Height          =   2535
@@ -94,7 +95,6 @@ Begin VB.Form frmMain
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   2
             AutoSize        =   2
-            Enabled         =   0   'False
             Object.Width           =   1032
             MinWidth        =   176
             Text            =   "NumLk"
@@ -114,14 +114,14 @@ Begin VB.Form frmMain
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/3/7"
+            TextSave        =   "2026/3/21"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "17:25"
+            TextSave        =   "18:51"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -308,12 +308,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim DanmakuColor '颜色变量
-Dim DanmakuWidth '宽度变量
-Dim DanmakuFontName '字体变量
-Dim DanmakuFontSize '字号变量
-Dim DanmakuFontText '显示字体文本
-Dim ShowEgg As Long
+Option Explicit
 
 Private Sub btnSend_Click()
 If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
@@ -323,8 +318,12 @@ If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
     frmContainer.Show
     frmContainer.Move Screen.Width, 0
     Timer1.Enabled = True
+    ConOut "发送弹幕：Text=" & txtDanmaku.Text & _
+        ", Color=" & DanmakuColor & _
+        ", Font=" & DanmakuFontName & "," & DanmakuFontSize
 Else
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
+    ConOut "错误：缺少必填项"
 End If
 End Sub
 
@@ -336,32 +335,44 @@ sldWidth.Value = 100
 frmContainer.Width = 100
 txtWidth.Text = "100 twip"
 Timer1.Enabled = False
+ConOut "提示："
+ConOut "当前显示器 缇(二十分之一点)/像素 值（横向）：" & Screen.TwipsPerPixelX
+ConOut "当前显示器 缇/像素 值（纵向）：              " & Screen.TwipsPerPixelY
+ConOut "", False
 End Sub
 
 Private Sub btnColorPicker_Click()
 CommonDialog1.DialogTitle = "选择颜色"
 CommonDialog1.ShowColor '弹出选择颜色
+ConOut "选择颜色"
 DanmakuColor = CommonDialog1.Color
 txtColor.Text = DanmakuColor '在标签中显示颜色
 frmContainer.Label1.ForeColor = DanmakuColor
+ConOut "选择的颜色：" & DanmakuColor
 End Sub
 
 Private Sub btnFontPicker_Click()
+On Error Resume Next
 CommonDialog1.DialogTitle = "选择字体"
 CommonDialog1.ShowFont '弹出选择字体
+ConOut "选择字体"
 DanmakuFontName = CommonDialog1.FontName
 DanmakuFontSize = CommonDialog1.FontSize
-If DanmakuFontName <> "" And DanmakuFontSize <> "" Then
+If DanmakuFontName <> " " And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
     DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
     txtFont.Text = DanmakuFontText '在标签中显示字体
     frmContainer.Label1.FontName = DanmakuFontName
     frmContainer.Label1.FontSize = DanmakuFontSize
+    ConOut "选择了字体：" & DanmakuFontName & "," & DanmakuFontSize
 Else
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
+    ConOut "错误：缺少必填项"
 End If
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
+ConOut "结束"
+FreeConsole
 End
 End Sub
 
@@ -384,13 +395,16 @@ ShellAboutA Me.hWnd, _
     "software.wsrj@outlook.com" & vbCrLf & _
     "https://github.com/wsrj", _
     Me.Icon.Handle
+ConOut "打开“关于”对话框"
 End Sub
 
 Private Sub mnuContact_Click()
 MsgBox "请访问 https://space.bilibili.com/3493134929496963", vbInformation + vbOKOnly, "联系作者"
+ConOut "单击“联系作者”"
 End Sub
 
 Private Sub mnuExit_Click()
+ConOut "单击“退出”"
 End
 End Sub
 '下面这坨使就让它封存吧
@@ -416,6 +430,8 @@ End Sub
 'End Sub
 
 Private Sub mnuSave_Click()
+Dim file As String
+Dim ResultWriteFont, ResultWriteSize, ResultWriteWidth, ResultWriteColor
 CommonDialog1.DialogTitle = "保存配置"
 CommonDialog1.DefaultExt = "*.ini"
 CommonDialog1.ShowSave
@@ -430,8 +446,10 @@ If DanmakuFontSize <> "" And DanmakuFontText <> "" And DanmakuColor <> "" Then
     ' 如果返回值都不为 0 则成功
     If ResultWriteFont <> 0 And ResultWriteSize <> 0 And ResultWriteWidth <> 0 And ResultWriteColor <> 0 Then
         MsgBox "保存配置成功！", vbInformation + vbOKOnly, "成功"
+        ConOut "保存的配置：" & file
     Else
         MsgBox "保存配置失败 (ResultWriteFont=" & ResultWriteFont & ", ResultWriteSize=" & ResultWriteSize & "ResultWriteColor=" & ResultWriteColor & ")", vbCritical, "失败"
+        ConOut "错误：保存配置失败"
     End If
 Else
     ' 如果有空的则弹出提示
@@ -442,6 +460,7 @@ End Sub
 Private Sub sldWidth_Change()
 ' 如果值小于 100 则自动更改为 100
 If sldWidth.Value < 100 Then
+    ConOut "错误：弹幕宽度不能小于 100 缇"
     sldWidth.Value = 100
 End If
 sldWidth.SelStart = 0
@@ -449,6 +468,7 @@ sldWidth.SelStart = 0
 sldWidth.SelLength = sldWidth.Value
 DanmakuWidth = sldWidth.Value
 txtWidth.Text = DanmakuWidth & " twip"
+ConOut "更改的弹幕宽度：" & DanmakuWidth & " twip"
 frmContainer.Width = DanmakuWidth
 frmContainer.Label1.Width = DanmakuWidth
 End Sub
