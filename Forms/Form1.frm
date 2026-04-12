@@ -121,7 +121,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "16:08"
+            TextSave        =   "16:58"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -321,7 +321,7 @@ If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
     frmContainer.Show
     frmContainer.Move Screen.Width, 0
     Timer1.Enabled = True
-    ConOut "发送弹幕：Text=" & txtDanmaku.Text & _
+    ConOut "发送弹幕：Text=" & txtDanmaku.text & _
         ", Color=" & DanmakuColor & _
         ", Font=" & DanmakuFontName & "," & DanmakuFontSize
 Else
@@ -336,7 +336,7 @@ sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
 sldWidth.Value = 100
 frmContainer.Width = 100
-txtWidth.Text = "100 twip"
+txtWidth.text = "100 twip"
 Timer1.Enabled = False
 ConOut "提示："
 ConOut "当前显示器 缇(二十分之一点)/像素 值（横向）：" & Screen.TwipsPerPixelX
@@ -349,7 +349,7 @@ CommonDialog1.DialogTitle = "选择颜色"
 CommonDialog1.ShowColor '弹出选择颜色
 ConOut "选择颜色"
 DanmakuColor = CommonDialog1.Color
-txtColor.Text = DanmakuColor '在标签中显示颜色
+txtColor.text = DanmakuColor '在标签中显示颜色
 frmContainer.Label1.ForeColor = DanmakuColor
 ConOut "选择的颜色：" & DanmakuColor
 End Sub
@@ -363,7 +363,7 @@ DanmakuFontName = CommonDialog1.FontName
 DanmakuFontSize = CommonDialog1.FontSize
 If DanmakuFontName <> " " And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
     DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
-    txtFont.Text = DanmakuFontText '在标签中显示字体
+    txtFont.text = DanmakuFontText '在标签中显示字体
     frmContainer.Label1.FontName = DanmakuFontName
     frmContainer.Label1.FontSize = DanmakuFontSize
     ConOut "选择了字体：" & DanmakuFontName & "," & DanmakuFontSize
@@ -431,6 +431,7 @@ End Sub
 'txtFont.Text = "字体：" & DanmakuFontName & "，字号：" & DanmakuFontSize
 'txtColor.Text = DanmakuColor
 'End Sub
+'现在这坨使被下面这些接替了
 
 Private Sub mnuOpen_Click()
 Dim file As String
@@ -439,8 +440,14 @@ CommonDialog1.DefaultExt = "*.xml"
 CommonDialog1.ShowOpen
 file = CommonDialog1.FileName
 If file = "" Or file = " " Then Exit Sub
-txtDanmaku.Text = ReadXML(file, "/config/text")
-
+txtDanmaku.text = ReadXML(file, "/config/text")
+txtColor.text = ReadXML(file, "/config/color")
+DanmakuFontSize = ReadXML(file, "/config/font/size")
+DanmakuFontName = ReadXML(file, "/config/font/name")
+DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
+txtFont.text = DanmakuFontText '在标签中显示字体
+frmContainer.Label1.FontName = DanmakuFontName
+frmContainer.Label1.FontSize = DanmakuFontSize
 End Sub
 
 Private Sub mnuSave_Click()
@@ -481,7 +488,7 @@ sldWidth.SelStart = 0
 ' 设置填充部分长度
 sldWidth.SelLength = sldWidth.Value
 DanmakuWidth = sldWidth.Value
-txtWidth.Text = DanmakuWidth & " twip"
+txtWidth.text = DanmakuWidth & " twip"
 ConOut "更改的弹幕宽度：" & DanmakuWidth & " twip"
 frmContainer.Width = DanmakuWidth
 frmContainer.Label1.Width = DanmakuWidth
@@ -503,7 +510,7 @@ End If
 End Sub
 
 Private Sub txtDanmaku_Change()
-frmContainer.Label1.Caption = txtDanmaku.Text
+frmContainer.Label1.Caption = txtDanmaku.text
 End Sub
 
 Private Function Egg(Count As Long)
