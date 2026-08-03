@@ -122,7 +122,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "21:36"
+            TextSave        =   "22:03"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -456,9 +456,11 @@ End Sub
 
 Private Sub mnuOpen_Click()
 Dim file As String
-CommonDialog1.DialogTitle = "打开配置(XML)"
-CommonDialog1.DefaultExt = "*.xml"
-CommonDialog1.ShowOpen
+With CommonDialog1
+    .DialogTitle = "打开配置"
+    .Filter = "可扩展标记语言文件(*.xml)|*.xml"
+    .ShowOpen
+End With
 file = CommonDialog1.FileName
 If file = vbNullString Or file = " " Then Exit Sub
 txtDanmaku.text = ReadXML(file, "/config/text")

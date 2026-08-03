@@ -95,15 +95,15 @@ Close #1
 End Sub
 
 Public Function ReadXML(xmlFile As String, nodeName As String) As String
-Dim xmlDoc As msxml2.DOMDocument60, node As Object
-Set xmlDoc = New msxml2.DOMDocument60
+Dim xmlDoc As New msxml2.DOMDocument60, node As Object
 xmlDoc.Load xmlFile
 Set node = xmlDoc.selectSingleNode(nodeName)
 If Not node Is Nothing Then
     ReadXML = node.text
     Set xmlDoc = Nothing
-    Exit Function
 Else
     MsgBox "配置文件格式不正确。", vbOKOnly + vbCritical, "错误"
+    ReadXML = vbNullString
+    Set xmlDoc = Nothing
 End If
 End Function
