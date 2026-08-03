@@ -122,7 +122,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "21:16"
+            TextSave        =   "21:36"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -253,7 +253,7 @@ Begin VB.Form frmMain
       Height          =   495
       Left            =   240
       TabIndex        =   11
-      Top             =   4800
+      Top             =   6240
       Width           =   4815
    End
    Begin VB.Label Label1 
@@ -546,18 +546,25 @@ Private Sub txtDanmaku_Change()
 frmContainer.Label1.Caption = txtDanmaku.text
 End Sub
 
-Private Function Egg(Count As Long)
+Private Function Egg(count As Long)
 ' 如果计次为 0 就使它为 1，如果为 1 就使它为 2，
 ' 如果为 2 就显示彩蛋并清零计次，
-' 用到上面就是单击一次再双击一次（顺序反过来也可以）
+' 用到上面就是单击一次再双击一次（顺序反过来也可以）或单击三次
 ' 就显示彩蛋
-If Count = 0 Then
-    Count = 1
-ElseIf Count = 1 Then
-    Count = 2
-ElseIf Count = 2 Then
+'If count = 0 Then
+'    count = 1
+'ElseIf count = 1 Then
+'    count = 2
+'ElseIf count = 2 Then
+'    MsgBox "你发现了彩蛋！", vbOKOnly + vbApplicationModal + vbInformation, "彩蛋"
+'    frmEgg.Show vbModal, Me
+'    count = 0
+'End If
+If count < 2 Then
+    count = count + 1
+ElseIf count = 2 Then
     MsgBox "你发现了彩蛋！", vbOKOnly + vbApplicationModal + vbInformation, "彩蛋"
     frmEgg.Show vbModal, Me
-    Count = 0
+    count = 0
 End If
 End Function
