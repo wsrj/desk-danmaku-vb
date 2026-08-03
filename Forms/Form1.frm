@@ -95,6 +95,7 @@ Begin VB.Form frmMain
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   2
             AutoSize        =   2
+            Enabled         =   0   'False
             Object.Width           =   1032
             MinWidth        =   176
             Text            =   "NumLk"
@@ -114,14 +115,14 @@ Begin VB.Form frmMain
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/4/12"
+            TextSave        =   "2026/8/3"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "19:36"
+            TextSave        =   "20:33"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -314,13 +315,20 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub btnSend_Click()
+ConOut "按下发送按钮"
 If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
+    ConOut "必填项不为空"
     frmContainer.Label1.ForeColor = DanmakuColor
+    ConOut "弹幕颜色：" & DanmakuColor
     frmContainer.Label1.FontName = DanmakuFontName
+    ConOut "字体名称：" & DanmakuFontName
     frmContainer.Label1.FontSize = DanmakuFontSize
+    ConOut "字体大小：" & DanmakuFontSize
     frmContainer.Show
     frmContainer.Move Screen.Width, 0
+    ConOut "加载弹幕容器"
     Timer1.Enabled = True
+    ConOut "启用时钟"
     ConOut "发送弹幕：Text=" & txtDanmaku.text & _
            ", Color=" & DanmakuColor & _
            ", Font=" & DanmakuFontName & "," & DanmakuFontSize
@@ -331,6 +339,11 @@ End If
 End Sub
 
 Private Sub Form_Initialize()
+ConOut "提示："
+ConOut "当前显示器 缇(二十分之一点)/像素 值（横向）：" & Screen.TwipsPerPixelX
+ConOut "当前显示器 缇/像素 值（纵向）：              " & Screen.TwipsPerPixelY
+ConOut "", False
+ConOut "frmMain 初始化"
 ShowEgg = 0
 sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
@@ -338,13 +351,11 @@ sldWidth.Value = 100
 frmContainer.Width = 100
 txtWidth.text = "100 twip"
 Timer1.Enabled = False
-ConOut "提示："
-ConOut "当前显示器 缇(二十分之一点)/像素 值（横向）：" & Screen.TwipsPerPixelX
-ConOut "当前显示器 缇/像素 值（纵向）：              " & Screen.TwipsPerPixelY
-ConOut "", False
+ConOut "禁用时钟"
 End Sub
 
 Private Sub btnColorPicker_Click()
+ConOut "按下选择颜色按钮"
 CommonDialog1.DialogTitle = "选择颜色"
 CommonDialog1.ShowColor '弹出选择颜色
 ConOut "选择颜色"
@@ -361,14 +372,24 @@ CommonDialog1.ShowFont '弹出选择字体
 ConOut "选择字体"
 DanmakuFontName = CommonDialog1.FontName
 DanmakuFontSize = CommonDialog1.FontSize
-If DanmakuFontName <> " " And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
+If DanmakuFontName <> " " And DanmakuFontName <> vbNullString And DanmakuFontSize <> vbNullString Then
+    ConOut "字体名称、字号不为空"
     DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
     txtFont.text = DanmakuFontText '在标签中显示字体
     frmContainer.Label1.FontName = DanmakuFontName
     frmContainer.Label1.FontSize = DanmakuFontSize
     ConOut "选择了字体：" & DanmakuFontName & "," & DanmakuFontSize
 Else
-    ConOut "错误：缺少必填项"
+    If DanmakuFontName = " " Or DanmakuFontName = vbNullString Then
+        ConOut "错误：缺少必填项：字体名称"
+        MsgBox "缺少字体名称", vbInformation + vbOKOnly, "提示"
+    ElseIf DanmakuFontSize = vbNullString Then
+        ConOut "错误：缺少必填项：字号"
+        MsgBox "缺少字号", vbInformation + vbOKOnly, "提示"
+    Else
+        ConOut "错误：缺少必填项"
+        MsgBox "缺少必填项", vbInformation + vbOKOnly, "提示"
+    End If
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
 End If
 End Sub
