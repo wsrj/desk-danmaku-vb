@@ -122,7 +122,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "20:33"
+            TextSave        =   "20:48"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -316,7 +316,7 @@ Option Explicit
 
 Private Sub btnSend_Click()
 ConOut "按下发送按钮"
-If DanmakuColor <> "" And DanmakuFontName <> "" And DanmakuFontSize <> "" Then
+If DanmakuColor <> vbNullString And DanmakuFontName <> vbNullString And DanmakuFontSize <> vbNullString Then
     ConOut "必填项不为空"
     frmContainer.Label1.ForeColor = DanmakuColor
     ConOut "弹幕颜色：" & DanmakuColor
@@ -342,7 +342,7 @@ Private Sub Form_Initialize()
 ConOut "提示："
 ConOut "当前显示器 缇(二十分之一点)/像素 值（横向）：" & Screen.TwipsPerPixelX
 ConOut "当前显示器 缇/像素 值（纵向）：              " & Screen.TwipsPerPixelY
-ConOut "", False
+ConOut vbNullString, False
 ConOut "frmMain 初始化"
 ShowEgg = 0
 sldWidth.Max = Screen.Width
@@ -390,7 +390,6 @@ Else
         ConOut "错误：缺少必填项"
         MsgBox "缺少必填项", vbInformation + vbOKOnly, "提示"
     End If
-    MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
 End If
 End Sub
 
@@ -461,7 +460,7 @@ CommonDialog1.DialogTitle = "打开配置(XML)"
 CommonDialog1.DefaultExt = "*.xml"
 CommonDialog1.ShowOpen
 file = CommonDialog1.FileName
-If file = "" Or file = " " Then Exit Sub
+If file = vbNullString Or file = " " Then Exit Sub
 txtDanmaku.text = ReadXML(file, "/config/text")
 txtColor.text = ReadXML(file, "/config/color")
 DanmakuFontSize = ReadXML(file, "/config/font/size")
@@ -482,9 +481,9 @@ CommonDialog1.DialogTitle = "保存配置(XML)"
 CommonDialog1.DefaultExt = "*.xml"
 CommonDialog1.ShowSave
 file = CommonDialog1.FileName
-If file = "" Or file = " " Then Exit Sub
+If file = vbNullString Or file = " " Then Exit Sub
 ' 如果弹幕属性值都不为空
-If DanmakuFontSize <> "" And DanmakuFontText <> "" And DanmakuColor <> "" Then
+If DanmakuFontSize <> vbNullString And DanmakuFontText <> vbNullString And DanmakuColor <> vbNullString Then
     ' 写入四个属性值
     Set nodeConfig = xmlDoc.createElement("config")
     xmlDoc.appendChild nodeConfig
