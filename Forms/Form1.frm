@@ -122,7 +122,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "20:48"
+            TextSave        =   "21:16"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -344,7 +344,7 @@ ConOut "当前显示器 缇(二十分之一点)/像素 值（横向）：" & Screen.TwipsPerPixelX
 ConOut "当前显示器 缇/像素 值（纵向）：              " & Screen.TwipsPerPixelY
 ConOut vbNullString, False
 ConOut "frmMain 初始化"
-ShowEgg = 0
+eggCount = 0
 sldWidth.Max = Screen.Width
 sldWidth.TickFrequency = sldWidth.Max / 10
 sldWidth.Value = 100
@@ -395,18 +395,18 @@ End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
 ConOut "结束"
-If ShowConsole Then FreeConsole
+If isShowConsole Then FreeConsole
 End
 End Sub
 
 Private Sub lblEgg_Click()
 ' 调用彩蛋功能
-Egg ShowEgg
+Egg eggCount
 End Sub
 
 Private Sub lblEgg_DblClick()
 ' 调用彩蛋功能
-Egg ShowEgg
+Egg eggCount
 End Sub
 
 Private Sub mnuAbout_Click()

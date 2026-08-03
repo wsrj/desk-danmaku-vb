@@ -35,14 +35,14 @@ Public Declare Function AllocConsole Lib "kernel32" () As Long
 Public Declare Function FreeConsole Lib "kernel32" () As Long
 Public Declare Function SetConsoleTitleA Lib "kernel32" (ByVal lpConsoleTitle As String) As Long
 
-Public DanmakuColor As Long      '颜色变量
+Public DanmakuColor As String    '颜色变量
 Public DanmakuWidth As Long      '宽度变量
 Public DanmakuFontName As String '字体变量
-Public DanmakuFontSize As Long   '字号变量
+Public DanmakuFontSize As String '字号变量
 Public DanmakuFontText As String '显示字体文本
-Public ShowEgg As Long
-Public Cmd As String
-Public ShowConsole As Boolean
+Public eggCount As Long           '是否显示彩蛋
+Public cmdLine As String         '命令行参数
+Public isShowConsole As Boolean  '是否显示控制台
 
 'Const GWL_EXSTYLE = (-20)
 'Const WS_EX_LAYERED = &H80000
@@ -53,26 +53,26 @@ Public Const HELP_TEXT As String = "用法：" & vbCrLf & _
     "/C, -c, --console - 启用控制台输出（注意，弹幕神器并不是 CUI 子系统程序）"
 
 Public Sub Main()
-Cmd = Command
-Select Case Cmd
+cmdLine = Command
+Select Case cmdLine
     Case "/?", "-?", "-h", "--help"
-        ShowConsole = False
+        isShowConsole = False
         MsgBox HELP_TEXT, vbOKOnly + vbInformation, "弹幕神器"
         End
     Case "/C", "/c", "-c", "--console"
-        ShowConsole = True
+        isShowConsole = True
         AllocConsole
         SetConsoleTitleA "控制台 - 弹幕神器"
         ConOut "欢迎使用弹幕神器！", False
-        ConOut "命令行参数：" & Cmd
-    Case ""
-        ShowConsole = False
+        ConOut "命令行参数：" & cmdLine
+    Case vbNullString
+        isShowConsole = False
     Case Else
         Select Case MsgBox("参数不正确。" & vbCrLf & HELP_TEXT & vbCrLf & vbCrLf & "是否打开主界面？", vbYesNo + vbCritical, "错误 - 弹幕神器")
             Case vbYes
-                ShowConsole = False
+                isShowConsole = False
             Case vbNo
-                ShowConsole = False
+                isShowConsole = False
 '                MsgBox HELP_TEXT, vbOKOnly + vbInformation, "帮助"
                 End
         End Select
@@ -83,8 +83,8 @@ frmContainer.Move Screen.Width, Screen.Height / 20
 frmMain.Timer1.Interval = 10
 End Sub
 
-Public Sub ConOut(text As String, Optional printTime As Boolean = True)
-If Not ShowConsole Then Exit Sub
+Public Sub ConOut(text As String, Optional isPrintTime As Boolean = True)
+If Not isShowConsole Then Exit Sub
 Open "CONOUT$" For Output As #1
 If printTime = True Then
     Print #1, "[" & Now & "] " & text
