@@ -22,7 +22,6 @@ Begin VB.Form frmContainer
    MinButton       =   0   'False
    ScaleHeight     =   3060
    ScaleWidth      =   8055
-   ShowInTaskbar   =   0   'False
    Begin VB.Label Label1 
       BackStyle       =   0  'Transparent
       BeginProperty Font 
@@ -55,7 +54,7 @@ SetWindowLongA Me.hWnd, -20, GetWindowLongA(Me.hWnd, -20) Or 524288
 SetLayeredWindowAttributes Me.hWnd, vbWhite, 0, 1
 'Me.Width = DanmakuWidth
 Me.Height = Screen.Height - Screen.Height / 20
-Label1.Caption = frmMain.txtDanmaku.Text
+Label1.Caption = frmMain.txtDanmaku.text
 End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
