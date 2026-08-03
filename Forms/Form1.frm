@@ -122,7 +122,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "22:03"
+            TextSave        =   "22:18"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -479,9 +479,12 @@ Dim xmlDoc As msxml2.DOMDocument60
 Dim nodeConfig, nodeText, nodeColor, nodeFont, nodeFontSize, nodeFontName
 Dim file As String
 Set xmlDoc = New msxml2.DOMDocument60
-CommonDialog1.DialogTitle = "保存配置(XML)"
-CommonDialog1.DefaultExt = "*.xml"
-CommonDialog1.ShowSave
+xmlDoc.preserveWhiteSpace = True
+With CommonDialog1
+    .DialogTitle = "保存配置"
+    .Filter = "可扩展标记语言文件(*.xml)|*.xml"
+    .ShowSave
+End With
 file = CommonDialog1.FileName
 If file = vbNullString Or file = " " Then Exit Sub
 ' 如果弹幕属性值都不为空
