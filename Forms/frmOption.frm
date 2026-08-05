@@ -83,31 +83,30 @@ staBottom.Panels(2).text = Chr(KeyAscii)
 ' [A] [S] [D]  F   G …
 ' …
 Select Case Chr(KeyAscii)
-' 按下向上
-If Chr(KeyAscii) = "W" Or Chr(KeyAscii) = "w" Then
-    If Shape1.Top >= 0 Then
-        Shape1.Top = Shape1.Top - 20
-    End If
-    CheckPos Shape1
-' 按下向下
-ElseIf Chr(KeyAscii) = "S" Or Chr(KeyAscii) = "s" Then
-    If Shape1.Top <= Me.Height - Shape1.Height Then
-        Shape1.Top = Shape1.Top + 20
-    End If
-    CheckPos Shape1
-' 按下向左
-ElseIf Chr(KeyAscii) = "A" Or Chr(KeyAscii) = "a" Then
-    If Shape1.Left >= 0 Then
-        Shape1.Left = Shape1.Left - 20
-    End If
-    CheckPos Shape1
-' 按下向右
-ElseIf Chr(KeyAscii) = "D" Or Chr(KeyAscii) = "d" Then
-    If Shape1.Left < Me.Width - Shape1.Width Then
-        Shape1.Left = Shape1.Left + 20
-    End If
-    CheckPos Shape1
-End If
+    ' 按下向上
+    Case "W", "w"
+        If Shape1.Top >= 0 Then
+            Shape1.Top = Shape1.Top - Screen.TwipsPerPixelY
+        End If
+    ' 按下向下
+    Case "S", "s"
+        If Shape1.Top <= Me.Height - Shape1.Height Then
+            Shape1.Top = Shape1.Top + Screen.TwipsPerPixelY
+        End If
+    ' 按下向左
+    Case "A", "a"
+        If Shape1.Left >= 0 Then
+            Shape1.Left = Shape1.Left - Screen.TwipsPerPixelX
+        End If
+    ' 按下向右
+    Case "D", "d"
+        If Shape1.Left < Me.Width - Shape1.Width Then
+            Shape1.Left = Shape1.Left + Screen.TwipsPerPixelX
+        End If
+    Case Else
+        Exit Sub
+End Select
+CheckPos Shape1
 End Sub
 
 Private Function CheckPos(object As Object)
