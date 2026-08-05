@@ -49,9 +49,10 @@ Option Explicit
 
 Private Sub Form_Load()
 ' 设置为分层窗口
-SetWindowLongA Me.hWnd, GWL_EXSTYLE, GetWindowLongA(Me.hWnd, GWL_EXSTYLE) Or WS_EX_LAYERED
+SetWindowLongA Me.hwnd, GWL_EXSTYLE, _
+    GetWindowLongA(Me.hwnd, GWL_EXSTYLE) Or WS_EX_LAYERED
 ' 设置透明度
-SetLayeredWindowAttributes Me.hWnd, vbWhite, 0, 1
+SetLayeredWindowAttributes Me.hwnd, vbWhite, 0, 1
 'Me.Width = DanmakuWidth
 Me.Height = Screen.Height - Screen.Height / 20
 Label1.Caption = frmMain.txtDanmaku.text
