@@ -1,6 +1,15 @@
+# 日志
 *.log
-MSSCCPRJ.SCC
+
+# 编译产物
 *.exe
 *.EXE
-*.scc
 Output\*
+
+# 其他
+*.scc
+MSSCCPRJ.SCC
+Thumbs.db
+*.pdm
+*.PDM
+*.vbw
