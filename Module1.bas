@@ -14,20 +14,20 @@ Public Declare Function WritePrivateProfileStringA Lib "kernel32" ( _
     ByVal lpString As String, _
     ByVal lpFileName As String) As Long
 Public Declare Function ShellAboutA Lib "shell32" ( _
-    ByVal hWnd As Long, _
+    ByVal hwnd As Long, _
     ByVal szApp As String, _
     ByVal szOtherStuff As String, _
     ByVal hIcon As Long) As Long
 Public Declare Function GetLastError Lib "kernel32" () As Long
 Public Declare Function SetWindowLongA Lib "user32" ( _
-    ByVal hWnd As Long, _
+    ByVal hwnd As Long, _
     ByVal nIndex As Long, _
     ByVal dwNewLong As Long) As Long
 Public Declare Function GetWindowLongA Lib "user32" ( _
-    ByVal hWnd As Long, _
+    ByVal hwnd As Long, _
     ByVal nIndex As Long) As Long
 Public Declare Function SetLayeredWindowAttributes Lib "user32" ( _
-    ByVal hWnd As Long, _
+    ByVal hwnd As Long, _
     ByVal crKey As Long, _
     ByVal bAlph As Byte, _
     ByVal dwFlags As Long) As Long
@@ -35,6 +35,13 @@ Public Declare Function AllocConsole Lib "kernel32" () As Long
 Public Declare Function FreeConsole Lib "kernel32" () As Long
 Public Declare Function SetConsoleTitleA Lib "kernel32" ( _
     ByVal lpConsoleTitle As String) As Long
+Public Declare Function ShellExecuteA Lib "shell32" ( _
+    ByVal hwnd As Long, _
+    ByVal lpOperation As String, _
+    ByVal lpFile As String, _
+    ByVal lpParameters As String, _
+    ByVal lpDirectory As String, _
+    ByVal nShowCmd As Long) As Long
 
 Public danmakuColor As String    '弹幕颜色
 Public danmakuWidth As Long      '弹幕宽度
@@ -48,6 +55,7 @@ Public isShowConsole As Boolean  '是否显示控制台
 Public Const GWL_EXSTYLE As Long = (-20)
 Public Const WS_EX_LAYERED As Long = &H80000
 Public Const LWA_ALPHA As Long = &H2
+Public Const SW_SHOWNORMAL As Integer = 1
 Public Const HELP_TEXT As String = "用法：" & vbCrLf & _
     "弹幕神器.exe [/? | /C]" & vbCrLf & _
     "/?, -h, --help - 显示此帮助信息" & vbCrLf & _

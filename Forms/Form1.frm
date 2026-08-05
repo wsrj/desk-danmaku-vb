@@ -116,14 +116,14 @@ Begin VB.Form frmMain
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/8/5"
+            TextSave        =   "2026/8/6"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "21:40"
+            TextSave        =   "3:02"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -317,7 +317,9 @@ Option Explicit
 
 Private Sub btnSend_Click()
 ConOut "按下发送按钮"
-If danmakuColor <> vbNullString And danmakuFontName <> vbNullString And danmakuFontSize <> vbNullString Then
+If danmakuColor <> vbNullString _
+    And danmakuFontName <> vbNullString _
+    And danmakuFontSize <> vbNullString Then
     ConOut "必填项不为空"
     frmContainer.Label1.ForeColor = danmakuColor
     ConOut "弹幕颜色：" & danmakuColor
@@ -373,9 +375,12 @@ CommonDialog1.ShowFont '弹出选择字体
 ConOut "选择字体"
 danmakuFontName = CommonDialog1.FontName
 danmakuFontSize = CommonDialog1.FontSize
-If danmakuFontName <> " " And danmakuFontName <> vbNullString And danmakuFontSize <> vbNullString Then
+If danmakuFontName <> " " _
+    And danmakuFontName <> vbNullString _
+    And danmakuFontSize <> vbNullString Then
     ConOut "字体名称、字号不为空"
-    danmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
+    danmakuFontText = _
+        "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
     txtFont.text = danmakuFontText '在标签中显示字体
     frmContainer.Label1.FontName = danmakuFontName
     frmContainer.Label1.FontSize = danmakuFontSize
@@ -392,12 +397,6 @@ Else
         MsgBox "缺少必填项", vbInformation + vbOKOnly, "提示"
     End If
 End If
-End Sub
-
-Private Sub Form_OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
-Debug.Print Data.Files
-Debug.Print Effect
-
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -418,7 +417,7 @@ End Sub
 
 Private Sub mnuAbout_Click()
 ConOut "打开“关于”对话框"
-ShellAboutA Me.hWnd, _
+ShellAboutA Me.hwnd, _
     "关于弹幕神器#弹幕神器", _
     "这是一个能在桌面上发弹幕的程序！" & vbCrLf & _
     "联系作者：" & vbCrLf & _
@@ -430,7 +429,15 @@ End Sub
 
 Private Sub mnuContact_Click()
 ConOut "单击“联系作者”"
-MsgBox "请访问 https://space.bilibili.com/3493134929496963", vbInformation + vbOKOnly, "联系作者"
+Select Case MsgBox("要访问作者哔哩哔哩主页吗？" & vbCrLf & CONTACT_URL, _
+    vbYesNo + vbInformation, "联系作者")
+    Case vbYes
+        ConOut "打开作者主页"
+        ShellExecuteA Me.hwnd, "open", CONTACT_URL, vbNullString, _
+            vbNullString, SW_SHOWNORMAL
+    Case vbNo
+        Exit Sub
+End Select
 End Sub
 
 Private Sub mnuExit_Click()
@@ -474,7 +481,8 @@ txtDanmaku.text = ReadXML(file, "/config/text")
 txtColor.text = ReadXML(file, "/config/color")
 danmakuFontSize = ReadXML(file, "/config/font/size")
 danmakuFontName = ReadXML(file, "/config/font/name")
-danmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
+danmakuFontText = _
+    "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
 txtFont.text = danmakuFontText '在标签中显示字体
 frmContainer.Label1.FontName = danmakuFontName
 frmContainer.Label1.FontSize = danmakuFontSize
@@ -495,7 +503,9 @@ End With
 file = CommonDialog1.FileName
 If file = vbNullString Or file = " " Then Exit Sub
 ' 如果弹幕属性值都不为空
-If danmakuFontSize <> vbNullString And danmakuFontText <> vbNullString And danmakuColor <> vbNullString Then
+If danmakuFontSize <> vbNullString _
+    And danmakuFontText <> vbNullString _
+    And danmakuColor <> vbNullString Then
     ' 写入四个属性值
     Set nodeConfig = xmlDoc.createElement("config")
     xmlDoc.appendChild nodeConfig
@@ -566,7 +576,8 @@ Private Function Egg(count As Long)
 If count < 2 Then
     count = count + 1
 ElseIf count = 2 Then
-    MsgBox "你发现了彩蛋！", vbOKOnly + vbApplicationModal + vbInformation, "彩蛋"
+    MsgBox "你发现了彩蛋！", _
+        vbOKOnly + vbApplicationModal + vbInformation, "彩蛋"
     frmEgg.Show vbModal, Me
     count = 0
 End If

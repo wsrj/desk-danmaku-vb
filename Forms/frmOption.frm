@@ -77,11 +77,12 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Form_KeyPress(KeyAscii As Integer)
-staBottom.Panels(2).Text = Chr(KeyAscii)
+staBottom.Panels(2).text = Chr(KeyAscii)
 ' 键盘大概是这样：
 '  Q  [W]  E   R   T …
 ' [A] [S] [D]  F   G …
 ' …
+Select Case Chr(KeyAscii)
 ' 按下向上
 If Chr(KeyAscii) = "W" Or Chr(KeyAscii) = "w" Then
     If Shape1.Top >= 0 Then
@@ -109,26 +110,26 @@ ElseIf Chr(KeyAscii) = "D" Or Chr(KeyAscii) = "d" Then
 End If
 End Sub
 
-Private Function CheckPos(Object As Object)
+Private Function CheckPos(object As Object)
 ' 检查左边距
-If Object.Left < 0 Then
-    Object.Left = 0
-    staBottom.Panels(3).Text = "超出窗口范围"
-ElseIf Object.Left > Me.Width - Object.Width Then
-    Object.Left = Me.Width - Object.Width
-    staBottom.Panels(3).Text = "超出窗口范围"
+If object.Left < 0 Then
+    object.Left = 0
+    staBottom.Panels(3).text = "超出窗口范围"
+ElseIf object.Left > Me.Width - object.Width Then
+    object.Left = Me.Width - object.Width
+    staBottom.Panels(3).text = "超出窗口范围"
 Else
-    staBottom.Panels(3).Text = "使用 [W] [A] [S] [D] 操控"
+    staBottom.Panels(3).text = "使用 [W] [A] [S] [D] 操控"
 End If
 ' 检查顶边距
-If Object.Top < 0 Then
-    Object.Top = 0
-    staBottom.Panels(3).Text = "超出窗口范围"
-ElseIf Object.Top > Me.Height - Object.Height - staBottom.Height Then
-    Object.Top = Me.Height - Object.Height - staBottom.Height
-    staBottom.Panels(3).Text = "超出窗口范围"
+If object.Top < 0 Then
+    object.Top = 0
+    staBottom.Panels(3).text = "超出窗口范围"
+ElseIf object.Top > Me.Height - object.Height - staBottom.Height Then
+    object.Top = Me.Height - object.Height - staBottom.Height
+    staBottom.Panels(3).text = "超出窗口范围"
 Else
-    staBottom.Panels(3).Text = "使用 [W] [A] [S] [D] 操控"
+    staBottom.Panels(3).text = "使用 [W] [A] [S] [D] 操控"
 End If
 End Function
 
