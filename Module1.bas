@@ -35,11 +35,11 @@ Public Declare Function AllocConsole Lib "kernel32" () As Long
 Public Declare Function FreeConsole Lib "kernel32" () As Long
 Public Declare Function SetConsoleTitleA Lib "kernel32" (ByVal lpConsoleTitle As String) As Long
 
-Public DanmakuColor As String    '弹幕颜色
-Public DanmakuWidth As Long      '弹幕宽度
-Public DanmakuFontName As String '弹幕字体
-Public DanmakuFontSize As String '弹幕字号
-Public DanmakuFontText As String '显示字体文本
+Public danmakuColor As String    '弹幕颜色
+Public danmakuWidth As Long      '弹幕宽度
+Public danmakuFontName As String '弹幕字体
+Public danmakuFontSize As String '弹幕字号
+Public danmakuFontText As String '显示字体文本
 Public eggCount As Long          '彩蛋计数
 Public cmdLine As String         '命令行参数
 Public isShowConsole As Boolean  '是否显示控制台
@@ -75,7 +75,7 @@ Select Case cmdLine
                 isShowConsole = False
             Case vbNo
                 isShowConsole = False
-'                MsgBox HELP_TEXT, vbOKOnly + vbInformation, "帮助"
+                'MsgBox HELP_TEXT, vbOKOnly + vbInformation, "帮助"
                 End
         End Select
 End Select

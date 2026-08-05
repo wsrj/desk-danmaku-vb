@@ -23,6 +23,7 @@ Begin VB.Form frmMain
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
+   OLEDropMode     =   1  'Manual
    ScaleHeight     =   489
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   472
@@ -115,14 +116,14 @@ Begin VB.Form frmMain
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/8/3"
+            TextSave        =   "2026/8/5"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "22:18"
+            TextSave        =   "21:40"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -316,22 +317,22 @@ Option Explicit
 
 Private Sub btnSend_Click()
 ConOut "按下发送按钮"
-If DanmakuColor <> vbNullString And DanmakuFontName <> vbNullString And DanmakuFontSize <> vbNullString Then
+If danmakuColor <> vbNullString And danmakuFontName <> vbNullString And danmakuFontSize <> vbNullString Then
     ConOut "必填项不为空"
-    frmContainer.Label1.ForeColor = DanmakuColor
-    ConOut "弹幕颜色：" & DanmakuColor
-    frmContainer.Label1.FontName = DanmakuFontName
-    ConOut "字体名称：" & DanmakuFontName
-    frmContainer.Label1.FontSize = DanmakuFontSize
-    ConOut "字体大小：" & DanmakuFontSize
+    frmContainer.Label1.ForeColor = danmakuColor
+    ConOut "弹幕颜色：" & danmakuColor
+    frmContainer.Label1.FontName = danmakuFontName
+    ConOut "字体名称：" & danmakuFontName
+    frmContainer.Label1.FontSize = danmakuFontSize
+    ConOut "字体大小：" & danmakuFontSize
     frmContainer.Show
     frmContainer.Move Screen.Width, 0
     ConOut "加载弹幕容器"
     Timer1.Enabled = True
     ConOut "启用时钟"
     ConOut "发送弹幕：Text=" & txtDanmaku.text & _
-           ", Color=" & DanmakuColor & _
-           ", Font=" & DanmakuFontName & "," & DanmakuFontSize
+           ", Color=" & danmakuColor & _
+           ", Font=" & danmakuFontName & "," & danmakuFontSize
 Else
     ConOut "错误：缺少必填项"
     MsgBox "你还没有输入完", vbInformation + vbOKOnly, "提示"
@@ -359,10 +360,10 @@ ConOut "按下选择颜色按钮"
 CommonDialog1.DialogTitle = "选择颜色"
 CommonDialog1.ShowColor '弹出选择颜色
 ConOut "选择颜色"
-DanmakuColor = CommonDialog1.Color
-txtColor.text = DanmakuColor '在标签中显示颜色
-frmContainer.Label1.ForeColor = DanmakuColor
-ConOut "选择的颜色：" & DanmakuColor
+danmakuColor = CommonDialog1.Color
+txtColor.text = danmakuColor '在标签中显示颜色
+frmContainer.Label1.ForeColor = danmakuColor
+ConOut "选择的颜色：" & danmakuColor
 End Sub
 
 Private Sub btnFontPicker_Click()
@@ -370,20 +371,20 @@ On Error Resume Next
 CommonDialog1.DialogTitle = "选择字体"
 CommonDialog1.ShowFont '弹出选择字体
 ConOut "选择字体"
-DanmakuFontName = CommonDialog1.FontName
-DanmakuFontSize = CommonDialog1.FontSize
-If DanmakuFontName <> " " And DanmakuFontName <> vbNullString And DanmakuFontSize <> vbNullString Then
+danmakuFontName = CommonDialog1.FontName
+danmakuFontSize = CommonDialog1.FontSize
+If danmakuFontName <> " " And danmakuFontName <> vbNullString And danmakuFontSize <> vbNullString Then
     ConOut "字体名称、字号不为空"
-    DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
-    txtFont.text = DanmakuFontText '在标签中显示字体
-    frmContainer.Label1.FontName = DanmakuFontName
-    frmContainer.Label1.FontSize = DanmakuFontSize
-    ConOut "选择了字体：" & DanmakuFontName & "," & DanmakuFontSize
+    danmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
+    txtFont.text = danmakuFontText '在标签中显示字体
+    frmContainer.Label1.FontName = danmakuFontName
+    frmContainer.Label1.FontSize = danmakuFontSize
+    ConOut "选择了字体：" & danmakuFontName & "," & danmakuFontSize
 Else
-    If DanmakuFontName = " " Or DanmakuFontName = vbNullString Then
+    If danmakuFontName = " " Or danmakuFontName = vbNullString Then
         ConOut "错误：缺少必填项：字体名称"
         MsgBox "缺少字体名称", vbInformation + vbOKOnly, "提示"
-    ElseIf DanmakuFontSize = vbNullString Then
+    ElseIf danmakuFontSize = vbNullString Then
         ConOut "错误：缺少必填项：字号"
         MsgBox "缺少字号", vbInformation + vbOKOnly, "提示"
     Else
@@ -391,6 +392,12 @@ Else
         MsgBox "缺少必填项", vbInformation + vbOKOnly, "提示"
     End If
 End If
+End Sub
+
+Private Sub Form_OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Debug.Print Data.Files
+Debug.Print Effect
+
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -465,12 +472,12 @@ file = CommonDialog1.FileName
 If file = vbNullString Or file = " " Then Exit Sub
 txtDanmaku.text = ReadXML(file, "/config/text")
 txtColor.text = ReadXML(file, "/config/color")
-DanmakuFontSize = ReadXML(file, "/config/font/size")
-DanmakuFontName = ReadXML(file, "/config/font/name")
-DanmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
-txtFont.text = DanmakuFontText '在标签中显示字体
-frmContainer.Label1.FontName = DanmakuFontName
-frmContainer.Label1.FontSize = DanmakuFontSize
+danmakuFontSize = ReadXML(file, "/config/font/size")
+danmakuFontName = ReadXML(file, "/config/font/name")
+danmakuFontText = "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
+txtFont.text = danmakuFontText '在标签中显示字体
+frmContainer.Label1.FontName = danmakuFontName
+frmContainer.Label1.FontSize = danmakuFontSize
 ConOut "读取配置文件：" & file
 End Sub
 
@@ -488,7 +495,7 @@ End With
 file = CommonDialog1.FileName
 If file = vbNullString Or file = " " Then Exit Sub
 ' 如果弹幕属性值都不为空
-If DanmakuFontSize <> vbNullString And DanmakuFontText <> vbNullString And DanmakuColor <> vbNullString Then
+If danmakuFontSize <> vbNullString And danmakuFontText <> vbNullString And danmakuColor <> vbNullString Then
     ' 写入四个属性值
     Set nodeConfig = xmlDoc.createElement("config")
     xmlDoc.appendChild nodeConfig
@@ -496,15 +503,15 @@ If DanmakuFontSize <> vbNullString And DanmakuFontText <> vbNullString And Danma
     nodeText.text = txtDanmaku.text
     nodeConfig.appendChild nodeText
     Set nodeColor = xmlDoc.createElement("color")
-    nodeColor.text = DanmakuColor
+    nodeColor.text = danmakuColor
     nodeConfig.appendChild nodeColor
     Set nodeFont = xmlDoc.createElement("font")
     nodeConfig.appendChild nodeFont
     Set nodeFontSize = xmlDoc.createElement("size")
-    nodeFontSize.text = DanmakuFontSize
+    nodeFontSize.text = danmakuFontSize
     nodeFont.appendChild nodeFontSize
     Set nodeFontName = xmlDoc.createElement("name")
-    nodeFontName.text = DanmakuFontName
+    nodeFontName.text = danmakuFontName
     nodeFont.appendChild nodeFontName
     xmlDoc.save file
     ConOut "保存配置文件：" & file
@@ -525,11 +532,11 @@ End If
 sldWidth.SelStart = 0
 ' 设置填充部分长度
 sldWidth.SelLength = sldWidth.Value
-DanmakuWidth = sldWidth.Value
-txtWidth.text = DanmakuWidth & " twip"
-ConOut "更改的弹幕宽度：" & DanmakuWidth & " twip"
-frmContainer.Width = DanmakuWidth
-frmContainer.Label1.Width = DanmakuWidth
+danmakuWidth = sldWidth.Value
+txtWidth.text = danmakuWidth & " twip"
+ConOut "更改的弹幕宽度：" & danmakuWidth & " twip"
+frmContainer.Width = danmakuWidth
+frmContainer.Label1.Width = danmakuWidth
 End Sub
 
 Sub Timer1_Timer()
@@ -556,15 +563,6 @@ Private Function Egg(count As Long)
 ' 如果为 2 就显示彩蛋并清零计次，
 ' 用到上面就是单击一次再双击一次（顺序反过来也可以）或单击三次
 ' 就显示彩蛋
-'If count = 0 Then
-'    count = 1
-'ElseIf count = 1 Then
-'    count = 2
-'ElseIf count = 2 Then
-'    MsgBox "你发现了彩蛋！", vbOKOnly + vbApplicationModal + vbInformation, "彩蛋"
-'    frmEgg.Show vbModal, Me
-'    count = 0
-'End If
 If count < 2 Then
     count = count + 1
 ElseIf count = 2 Then
