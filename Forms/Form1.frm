@@ -123,7 +123,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "3:02"
+            TextSave        =   "3:24"
             Object.ToolTipText     =   "Ê±¼ä"
          EndProperty
       EndProperty
@@ -143,6 +143,7 @@ Begin VB.Form frmMain
    End
    Begin VB.CommandButton btnSend 
       Caption         =   "·¢ËÍ(&E)"
+      Default         =   -1  'True
       Height          =   495
       Left            =   5280
       TabIndex        =   10
