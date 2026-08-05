@@ -33,7 +33,8 @@ Public Declare Function SetLayeredWindowAttributes Lib "user32" ( _
     ByVal dwFlags As Long) As Long
 Public Declare Function AllocConsole Lib "kernel32" () As Long
 Public Declare Function FreeConsole Lib "kernel32" () As Long
-Public Declare Function SetConsoleTitleA Lib "kernel32" (ByVal lpConsoleTitle As String) As Long
+Public Declare Function SetConsoleTitleA Lib "kernel32" ( _
+    ByVal lpConsoleTitle As String) As Long
 
 Public danmakuColor As String    '弹幕颜色
 Public danmakuWidth As Long      '弹幕宽度
@@ -70,12 +71,13 @@ Select Case cmdLine
     Case vbNullString
         isShowConsole = False
     Case Else
-        Select Case MsgBox("参数不正确。" & vbCrLf & HELP_TEXT & vbCrLf & vbCrLf & "是否打开主界面？", vbYesNo + vbCritical, "错误 - 弹幕神器")
+        Select Case MsgBox("参数不正确。" & vbCrLf & HELP_TEXT & _
+                    vbCrLf & vbCrLf & "是否打开主界面？", _
+                    vbYesNo + vbCritical, "错误 - 弹幕神器")
             Case vbYes
                 isShowConsole = False
             Case vbNo
                 isShowConsole = False
-                'MsgBox HELP_TEXT, vbOKOnly + vbInformation, "帮助"
                 End
         End Select
 End Select
