@@ -35,22 +35,24 @@ Public Declare Function AllocConsole Lib "kernel32" () As Long
 Public Declare Function FreeConsole Lib "kernel32" () As Long
 Public Declare Function SetConsoleTitleA Lib "kernel32" (ByVal lpConsoleTitle As String) As Long
 
-Public DanmakuColor As String    '颜色变量
-Public DanmakuWidth As Long      '宽度变量
-Public DanmakuFontName As String '字体变量
-Public DanmakuFontSize As String '字号变量
+Public DanmakuColor As String    '弹幕颜色
+Public DanmakuWidth As Long      '弹幕宽度
+Public DanmakuFontName As String '弹幕字体
+Public DanmakuFontSize As String '弹幕字号
 Public DanmakuFontText As String '显示字体文本
-Public eggCount As Long           '是否显示彩蛋
+Public eggCount As Long          '彩蛋计数
 Public cmdLine As String         '命令行参数
 Public isShowConsole As Boolean  '是否显示控制台
 
-'Const GWL_EXSTYLE = (-20)
-'Const WS_EX_LAYERED = &H80000
-'Const LWA_ALPHA = &H2
+Public Const GWL_EXSTYLE As Long = (-20)
+Public Const WS_EX_LAYERED As Long = &H80000
+Public Const LWA_ALPHA As Long = &H2
 Public Const HELP_TEXT As String = "用法：" & vbCrLf & _
     "弹幕神器.exe [/? | /C]" & vbCrLf & _
     "/?, -h, --help - 显示此帮助信息" & vbCrLf & _
     "/C, -c, --console - 启用控制台输出（注意，弹幕神器并不是 CUI 子系统程序）"
+Public Const CONTACT_URL As String = _
+    "https://space.bilibili.com/3493134929496963"
 
 Public Sub Main()
 cmdLine = Command

@@ -49,7 +49,7 @@ Option Explicit
 
 Private Sub Form_Load()
 ' 设置为分层窗口
-SetWindowLongA Me.hWnd, -20, GetWindowLongA(Me.hWnd, -20) Or 524288
+SetWindowLongA Me.hWnd, GWL_EXSTYLE, GetWindowLongA(Me.hWnd, GWL_EXSTYLE) Or WS_EX_LAYERED
 ' 设置透明度
 SetLayeredWindowAttributes Me.hWnd, vbWhite, 0, 1
 'Me.Width = DanmakuWidth
@@ -66,3 +66,4 @@ End Sub
 Private Sub Form_Resize()
 Label1.Move 0, 0, Me.Width, Me.Height
 End Sub
+
