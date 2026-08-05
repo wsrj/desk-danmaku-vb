@@ -35,7 +35,8 @@ Public Declare Function SetLayeredWindowAttributes Lib "user32" ( _
 ## 系统要求
 
 建议在 Windows Vista 以上系统运行。
-- **最低系统**：Windows 2000
+- **最低客户端**：Windows XP
+- **最低服务器**：Windows 2000 Server
 
 <!--
 ## 编译
