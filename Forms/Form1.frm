@@ -133,7 +133,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "22:52"
+            TextSave        =   "23:25"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -572,8 +572,9 @@ EnableControls False
 ' 每个时钟周期向左移动 50 像素
 frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
 If frmContainer.Left < 0 - frmContainer.Width Then
-    frmMain.Timer1.Enabled = False
+    Timer1.Enabled = False
     frmContainer.Left = Screen.Width ' 移动回初始位置
+    Unload frmContainer
     EnableControls
 End If
 End Sub
