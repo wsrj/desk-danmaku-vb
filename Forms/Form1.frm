@@ -33,7 +33,7 @@ Begin VB.Form frmMain
       Height          =   495
       Left            =   3660
       TabIndex        =   17
-      ToolTipText     =   "终止弹幕的发送。"
+      ToolTipText     =   "终止弹幕的发送，等同于按下 Esc。"
       Top             =   6240
       Width           =   1575
    End
@@ -133,7 +133,7 @@ Begin VB.Form frmMain
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "22:36"
+            TextSave        =   "22:52"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -598,13 +598,7 @@ End If
 End Function
 
 Private Sub EnableControls(Optional ByVal isEnable As Boolean = True)
-If isEnable Then
-    fraAppearance.Enabled = True
-    sldWidth.Enabled = True
-    btnSend.Enabled = True
-Else
-    fraAppearance.Enabled = False
-    sldWidth.Enabled = False
-    btnSend.Enabled = False
-End If
+fraAppearance.Enabled = isEnable
+fraWidth.Enabled = isEnable
+btnSend.Enabled = isEnable
 End Sub
