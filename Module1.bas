@@ -29,7 +29,7 @@ Public Declare Function GetWindowLongA Lib "user32" ( _
     ByVal nIndex As Long) As Long
 Public Declare Function SetLayeredWindowAttributes Lib "user32" ( _
     ByVal hwnd As Long, _
-    ByVal crKey As Long, _
+    ByVal crKey As ColorConstants, _
     ByVal bAlph As Byte, _
     ByVal dwFlags As Long) As Long
 Public Declare Function AllocConsole Lib "kernel32" () As Long
