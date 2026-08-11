@@ -1,5 +1,6 @@
 Attribute VB_Name = "Module1"
 Option Explicit
+Option Base 0
 
 Public Declare Function GetPrivateProfileStringA Lib "kernel32" ( _
     ByVal lpApplicationName As String, _
