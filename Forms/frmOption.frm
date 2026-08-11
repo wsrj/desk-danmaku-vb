@@ -109,7 +109,7 @@ End Select
 CheckPos Shape1
 End Sub
 
-Private Function CheckPos(object As Object)
+Private Function CheckPos(Optional object As Shape = Shape1)
 ' ¼ì²é×ó±ß¾à
 If object.Left < 0 Then
     object.Left = 0
