@@ -57,7 +57,8 @@ Public Const GWL_EXSTYLE As Long = (-20)
 Public Const WS_EX_LAYERED As Long = &H80000
 Public Const LWA_ALPHA As Long = &H2
 Public Const SW_SHOWNORMAL As Integer = 1
-Public Const HELP_TEXT As String = "用法：" & vbCrLf & _
+Public Const HELP_TEXT As String = _
+    "用法：" & vbCrLf & _
     "弹幕神器.exe [/? | /C]" & vbCrLf & _
     "/?, -h, --help - 显示此帮助信息" & vbCrLf & _
     "/C, -c, --console - 启用控制台输出（注意，弹幕神器并不是 CUI 子系统程序）"
@@ -69,7 +70,7 @@ cmdLine = Command
 Select Case cmdLine
     Case "/?", "-?", "-h", "--help"
         isShowConsole = False
-        MsgBox HELP_TEXT, vbOKOnly + vbInformation, "弹幕神器"
+        MsgBox HELP_TEXT, vbOKOnly + vbQuestion, "帮助 - 弹幕神器"
         End
     Case "/C", "/c", "-c", "--console"
         isShowConsole = True
