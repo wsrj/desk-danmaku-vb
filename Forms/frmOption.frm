@@ -131,6 +131,6 @@ Select Case object.Top
         staBottom.Panels(3).text = "超出窗口范围"
     Case Else
         staBottom.Panels(3).text = "使用 [W] [A] [S] [D] 操控"
-End If
+End Select
 End Function
 
