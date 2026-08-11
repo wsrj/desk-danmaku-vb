@@ -103,9 +103,9 @@ End Sub
 Public Sub ConOut(text As String, Optional isPrintTime As Boolean = True)
 If Not isShowConsole Then Exit Sub
 Open "CONOUT$" For Output As #1
-If isPrintTime = True Then
+If isPrintTime Then
     Print #1, "[" & Now & "] " & text
-ElseIf isPrintTime = False Then
+Else
     Print #1, text
 End If
 Close #1
