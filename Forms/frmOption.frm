@@ -126,8 +126,8 @@ Select Case object.Top
     Case Is < 0
         object.Top = 0
         staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
-    Case Is > Me.Height - object.Height - staBottom.Height
-        object.Top = Me.Height - object.Height - staBottom.Height
+    Case Is > Me.ScaleHeight - object.Height - staBottom.Height
+        object.Top = Me.ScaleHeight - object.Height - staBottom.Height
         staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
     Case Else
         staBottom.Panels(3).text = "Ê¹ÓÃ [W] [A] [S] [D] ²Ù¿Ø"
