@@ -27,6 +27,16 @@ Begin VB.Form frmMain
    ScaleHeight     =   489
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   472
+   Begin VB.CommandButton btnEnd 
+      Cancel          =   -1  'True
+      Caption         =   "终止(&N)"
+      Height          =   495
+      Left            =   3660
+      TabIndex        =   17
+      ToolTipText     =   "终止弹幕的发送。"
+      Top             =   6240
+      Width           =   1575
+   End
    Begin VB.Frame fraWidth 
       Caption         =   "弹幕最大宽度（单位：二十分之一点）"
       Height          =   2535
@@ -116,14 +126,14 @@ Begin VB.Form frmMain
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/8/6"
+            TextSave        =   "2026/8/11"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
             AutoSize        =   2
-            TextSave        =   "3:24"
+            TextSave        =   "22:36"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -316,8 +326,15 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Sub btnEnd_Click()
+Unload frmContainer
+Timer1.Enabled = False
+EnableControls
+End Sub
+
 Private Sub btnSend_Click()
 ConOut "按下发送按钮"
+If frmContainer Is Nothing Then frmContainer.Show
 If danmakuColor <> vbNullString _
     And danmakuFontName <> vbNullString _
     And danmakuFontSize <> vbNullString Then
@@ -491,10 +508,10 @@ ConOut "读取配置文件：" & file
 End Sub
 
 Private Sub mnuSave_Click()
-Dim xmlDoc As msxml2.DOMDocument60
+Dim xmlDoc As MSXML2.DOMDocument60
 Dim nodeConfig, nodeText, nodeColor, nodeFont, nodeFontSize, nodeFontName
 Dim file As String
-Set xmlDoc = New msxml2.DOMDocument60
+Set xmlDoc = New MSXML2.DOMDocument60
 xmlDoc.preserveWhiteSpace = True
 With CommonDialog1
     .DialogTitle = "保存配置"
@@ -551,17 +568,13 @@ frmContainer.Label1.Width = danmakuWidth
 End Sub
 
 Sub Timer1_Timer()
-fraAppearance.Enabled = False
-sldWidth.Enabled = False
-btnSend.Enabled = False
+EnableControls False
 ' 每个时钟周期向左移动 50 像素
 frmContainer.Move frmContainer.Left - 50, Screen.Height / 20
 If frmContainer.Left < 0 - frmContainer.Width Then
     frmMain.Timer1.Enabled = False
     frmContainer.Left = Screen.Width ' 移动回初始位置
-    fraAppearance.Enabled = True
-    sldWidth.Enabled = True
-    btnSend.Enabled = True
+    EnableControls
 End If
 End Sub
 
@@ -583,3 +596,15 @@ ElseIf count = 2 Then
     count = 0
 End If
 End Function
+
+Private Sub EnableControls(Optional ByVal isEnable As Boolean = True)
+If isEnable Then
+    fraAppearance.Enabled = True
+    sldWidth.Enabled = True
+    btnSend.Enabled = True
+Else
+    fraAppearance.Enabled = False
+    sldWidth.Enabled = False
+    btnSend.Enabled = False
+End If
+End Sub

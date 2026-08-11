@@ -94,10 +94,6 @@ With frmMain
     .Show
     .Timer1.Interval = 10
 End With
-With frmContainer
-    .Show
-    .Move Screen.Width, Screen.Height / 20
-End With
 End Sub
 
 Public Sub ConOut(text As String, Optional isPrintTime As Boolean = True)
