@@ -59,7 +59,7 @@ End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
 If UnloadMode = vbFormControlMenu Then
-    Cancel = True
+    Cancel = CInt(True)
 End If
 End Sub
 
