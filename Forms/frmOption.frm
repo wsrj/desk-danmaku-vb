@@ -77,12 +77,12 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Form_KeyPress(KeyAscii As Integer)
-staBottom.Panels(2).text = Chr(KeyAscii)
+staBottom.Panels(2).text = Chr$(KeyAscii)
 ' 键盘大概是这样：
 '  Q  [W]  E   R   T …
 ' [A] [S] [D]  F   G …
 ' …
-Select Case Chr(KeyAscii)
+Select Case Chr$(KeyAscii)
     ' 按下向上
     Case "W", "w"
         If Shape1.Top >= 0 Then
