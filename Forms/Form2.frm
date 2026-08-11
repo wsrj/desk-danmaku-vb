@@ -53,7 +53,6 @@ SetWindowLongA Me.hwnd, GWL_EXSTYLE, _
     GetWindowLongA(Me.hwnd, GWL_EXSTYLE) Or WS_EX_LAYERED
 ' …Ë÷√Õ∏√˜∂»
 SetLayeredWindowAttributes Me.hwnd, vbWhite, 0, 1
-'Me.Width = DanmakuWidth
 Me.Height = Screen.Height - Screen.Height / 20
 Label1.Caption = frmMain.txtDanmaku.text
 End Sub

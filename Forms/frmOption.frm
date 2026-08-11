@@ -109,26 +109,28 @@ End Select
 CheckPos Shape1
 End Sub
 
-Private Function CheckPos(Optional object As Shape = Shape1)
+Private Function CheckPos(object As Shape)
 ' ¼ì²é×ó±ß¾à
-If object.Left < 0 Then
-    object.Left = 0
-    staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
-ElseIf object.Left > Me.Width - object.Width Then
-    object.Left = Me.Width - object.Width
-    staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
-Else
-    staBottom.Panels(3).text = "Ê¹ÓÃ [W] [A] [S] [D] ²Ù¿Ø"
-End If
+Select Case object.Left
+    Case Is < 0
+        object.Left = 0
+        staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
+    Case Is > Me.ScaleWidth - object.Width
+        object.Left = Me.ScaleWidth - object.Width
+        staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
+    Case Else
+        staBottom.Panels(3).text = "Ê¹ÓÃ [W] [A] [S] [D] ²Ù¿Ø"
+End Select
 ' ¼ì²é¶¥±ß¾à
-If object.Top < 0 Then
-    object.Top = 0
-    staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
-ElseIf object.Top > Me.Height - object.Height - staBottom.Height Then
-    object.Top = Me.Height - object.Height - staBottom.Height
-    staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
-Else
-    staBottom.Panels(3).text = "Ê¹ÓÃ [W] [A] [S] [D] ²Ù¿Ø"
+Select Case object.Top
+    Case Is < 0
+        object.Top = 0
+        staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
+    Case Is > Me.Height - object.Height - staBottom.Height
+        object.Top = Me.Height - object.Height - staBottom.Height
+        staBottom.Panels(3).text = "³¬³ö´°¿Ú·¶Î§"
+    Case Else
+        staBottom.Panels(3).text = "Ê¹ÓÃ [W] [A] [S] [D] ²Ù¿Ø"
 End If
 End Function
 
