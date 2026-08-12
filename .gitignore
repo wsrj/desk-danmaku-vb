@@ -3,6 +3,7 @@
 *.LOG
 
 # 编译产物
+Output\packages\*
 *.exe
 *.EXE
 *.dep
