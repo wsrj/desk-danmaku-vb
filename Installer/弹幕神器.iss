@@ -39,6 +39,8 @@ WizardStyle=classic dynamic
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
+; 运行 VB6 “Package & Development 向导”打包，把目录设置为 \Output\packages 即可得到以下文件
+; （注意手动勾选清单文件，否则无法通过编译）
 Source: "{#ProjRoot}\Output\bin\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#ProjRoot}\Output\packages\Support\asycfilt.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#ProjRoot}\Output\packages\Support\CMDLGCHS.DLL"; DestDir: "{app}"; Flags: ignoreversion
