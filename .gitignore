@@ -1,15 +1,18 @@
 # 日志
 *.log
+*.LOG
 
 # 编译产物
 *.exe
 *.EXE
-Output\*
+*.dep
+*.DEP
 
 # 其他
 *.scc
-MSSCCPRJ.SCC
+*.SCC
 Thumbs.db
 *.pdm
 *.PDM
 *.vbw
+*.VBW
