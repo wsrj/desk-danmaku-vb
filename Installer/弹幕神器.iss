@@ -30,7 +30,8 @@ LicenseFile={#ProjRoot}\LICENSE
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#ProjRoot}\Installer\bin
-OutputBaseFilename=setup-desk-danmaku-vb
+; setup- <应用名> - <版本号> - <架构>
+OutputBaseFilename=setup-deskdanmaku-v1.5.0-x86
 SetupIconFile={#ProjRoot}\res\icon.ico
 SolidCompression=yes
 WizardStyle=classic dynamic
