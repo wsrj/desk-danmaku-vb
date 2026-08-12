@@ -1,9 +1,9 @@
-# 日志
+﻿# 日志
 *.log
 *.LOG
 
 # 编译产物
-Output\packages\*
+Output/packages
 *.exe
 *.EXE
 *.dep
