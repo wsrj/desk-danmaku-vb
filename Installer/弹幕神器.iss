@@ -29,7 +29,7 @@ LicenseFile={#ProjRoot}\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir={#ProjRoot}\Installer
+OutputDir={#ProjRoot}\Installer\bin
 OutputBaseFilename=setup-desk-danmaku-vb
 SetupIconFile={#ProjRoot}\res\icon.ico
 SolidCompression=yes
