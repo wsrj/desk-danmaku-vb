@@ -34,7 +34,16 @@ OutputDir={#ProjRoot}\Installer\bin
 OutputBaseFilename=setup-deskdanmaku-v1.5.0-x86
 SetupIconFile={#ProjRoot}\res\icon.ico
 SolidCompression=yes
-WizardStyle=classic dynamic
+WizardStyle=classic light
+DisableDirPage=no
+DisableFinishedPage=no
+DisableProgramGroupPage=no
+DisableReadyMemo=no
+DisableReadyPage=no
+DisableStartupPrompt=yes
+DisableWelcomePage=no
+WizardImageFile={#ProjRoot}\Installer\res\bg_installer_left.bmp
+WizardSmallImageFile={#ProjRoot}\Installer\res\bg_installer_topsmall.bmp
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
