@@ -95,9 +95,9 @@ Begin VB.Form frmMain
          NumPanels       =   5
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   1
-            AutoSize        =   2
+            AutoSize        =   1
             Enabled         =   0   'False
-            Object.Width           =   1005
+            Object.Width           =   1499
             MinWidth        =   176
             Text            =   "CapsLk"
             TextSave        =   "CAPS"
@@ -105,9 +105,9 @@ Begin VB.Form frmMain
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   2
-            AutoSize        =   2
+            AutoSize        =   1
             Enabled         =   0   'False
-            Object.Width           =   1032
+            Object.Width           =   1499
             MinWidth        =   176
             Text            =   "NumLk"
             TextSave        =   "NUM"
@@ -115,25 +115,28 @@ Begin VB.Form frmMain
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   3
-            AutoSize        =   2
+            AutoSize        =   1
             Enabled         =   0   'False
-            Object.Width           =   767
+            Object.Width           =   1499
             MinWidth        =   176
             Text            =   "Insert"
-            TextSave        =   "INS"
+            TextSave        =   "Ins"
             Object.ToolTipText     =   "Insert 键状态"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
             Alignment       =   2
-            TextSave        =   "2026/8/11"
+            AutoSize        =   1
+            Object.Width           =   3863
+            TextSave        =   "2026/8/15"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Alignment       =   2
-            AutoSize        =   2
-            TextSave        =   "23:25"
+            AutoSize        =   1
+            Object.Width           =   3863
+            TextSave        =   "21:31"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
