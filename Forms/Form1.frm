@@ -29,7 +29,7 @@ Begin VB.Form frmMain
    ScaleWidth      =   472
    Begin VB.CommandButton btnEnd 
       Cancel          =   -1  'True
-      Caption         =   "终止(&N)"
+      Caption         =   "终止(&E)"
       Height          =   495
       Left            =   3660
       TabIndex        =   17
@@ -136,7 +136,7 @@ Begin VB.Form frmMain
             Alignment       =   2
             AutoSize        =   1
             Object.Width           =   3863
-            TextSave        =   "21:58"
+            TextSave        =   "22:10"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -155,7 +155,7 @@ Begin VB.Form frmMain
       Top             =   240
    End
    Begin VB.CommandButton btnSend 
-      Caption         =   "发送(&E)"
+      Caption         =   "发送(&S)"
       Default         =   -1  'True
       Height          =   495
       Left            =   5280
