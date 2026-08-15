@@ -32,7 +32,7 @@ Begin VB.Form frmMain
       Caption         =   "终止(&E)"
       Height          =   495
       Left            =   3660
-      TabIndex        =   17
+      TabIndex        =   14
       ToolTipText     =   "终止弹幕的发送，等同于按下 Esc。"
       Top             =   6240
       Width           =   1575
@@ -41,7 +41,7 @@ Begin VB.Form frmMain
       Caption         =   "弹幕最大宽度（单位：二十分之一点）"
       Height          =   2535
       Left            =   240
-      TabIndex        =   13
+      TabIndex        =   10
       Top             =   3600
       Width           =   6615
       Begin VB.TextBox txtWidth 
@@ -52,7 +52,7 @@ Begin VB.Form frmMain
          Height          =   255
          Left            =   360
          Locked          =   -1  'True
-         TabIndex        =   15
+         TabIndex        =   11
          ToolTipText     =   "弹幕最大能达到多宽，如果超出该值就会换行"
          Top             =   480
          Width           =   6015
@@ -60,7 +60,7 @@ Begin VB.Form frmMain
       Begin MSComctlLib.Slider sldWidth 
          Height          =   615
          Left            =   240
-         TabIndex        =   14
+         TabIndex        =   12
          ToolTipText     =   "长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度"
          Top             =   840
          Width           =   6135
@@ -72,11 +72,11 @@ Begin VB.Form frmMain
          TickStyle       =   2
          Value           =   100
       End
-      Begin VB.Label Label5 
+      Begin VB.Label lblTipWidth 
          Caption         =   "注：长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度。"
          Height          =   495
          Left            =   360
-         TabIndex        =   16
+         TabIndex        =   13
          Top             =   1680
          Width           =   5895
       End
@@ -85,7 +85,7 @@ Begin VB.Form frmMain
       Align           =   2  'Align Bottom
       Height          =   375
       Left            =   0
-      TabIndex        =   12
+      TabIndex        =   16
       Top             =   6960
       Width           =   7080
       _ExtentX        =   12488
@@ -128,7 +128,7 @@ Begin VB.Form frmMain
             Alignment       =   2
             AutoSize        =   1
             Object.Width           =   3863
-            TextSave        =   "2026/8/15"
+            TextSave        =   "2026/8/16"
             Object.ToolTipText     =   "日期"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
@@ -136,7 +136,7 @@ Begin VB.Form frmMain
             Alignment       =   2
             AutoSize        =   1
             Object.Width           =   3863
-            TextSave        =   "22:10"
+            TextSave        =   "3:13"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -159,7 +159,7 @@ Begin VB.Form frmMain
       Default         =   -1  'True
       Height          =   495
       Left            =   5280
-      TabIndex        =   10
+      TabIndex        =   15
       Top             =   6240
       Width           =   1575
    End
@@ -185,16 +185,16 @@ Begin VB.Form frmMain
          Height          =   255
          Left            =   1800
          Locked          =   -1  'True
-         TabIndex        =   9
+         TabIndex        =   8
          ToolTipText     =   "你选择的颜色"
          Top             =   1920
          Width           =   2535
       End
       Begin VB.CommandButton btnColorPicker 
-         Caption         =   "选择颜色(&I)…"
+         Caption         =   "选择颜色(&C)…"
          Height          =   495
          Left            =   4560
-         TabIndex        =   8
+         TabIndex        =   9
          Top             =   1800
          Width           =   1575
       End
@@ -205,16 +205,16 @@ Begin VB.Form frmMain
          Height          =   255
          Left            =   1800
          Locked          =   -1  'True
-         TabIndex        =   6
+         TabIndex        =   5
          ToolTipText     =   "你选择的字体与字号"
          Top             =   1200
          Width           =   2535
       End
       Begin VB.CommandButton btnFontPicker 
-         Caption         =   "选择字体(&P)…"
+         Caption         =   "选择字体(&F)…"
          Height          =   495
          Left            =   4560
-         TabIndex        =   5
+         TabIndex        =   6
          Top             =   1080
          Width           =   1575
       End
@@ -267,9 +267,9 @@ Begin VB.Form frmMain
       BackStyle       =   0  'Transparent
       Height          =   495
       Left            =   240
-      TabIndex        =   11
+      TabIndex        =   17
       Top             =   6240
-      Width           =   4815
+      Width           =   4755
    End
    Begin VB.Label lblInstruction 
       Appearance      =   0  'Flat
@@ -340,7 +340,8 @@ ConOut "按下发送按钮"
 If frmContainer Is Nothing Then frmContainer.Show
 If danmakuColor <> vbNullString _
     And danmakuFontName <> vbNullString _
-    And danmakuFontSize <> vbNullString Then
+    And danmakuFontSize <> vbNullString _
+Then
     ConOut "必填项不为空"
     frmContainer.Label1.ForeColor = danmakuColor
     ConOut "弹幕颜色：" & danmakuColor
@@ -376,7 +377,6 @@ frmContainer.Width = 100
 txtWidth.text = "100 twip"
 Timer1.Enabled = False
 ConOut "禁用时钟"
-lblInstruction.Caption = LoadResString(101)
 End Sub
 
 Private Sub btnColorPicker_Click()
@@ -402,7 +402,8 @@ If danmakuFontName <> " " _
     And danmakuFontSize <> vbNullString Then
     ConOut "字体名称、字号不为空"
     danmakuFontText = _
-        "字体：" & CommonDialog1.FontName & "，字号：" & CommonDialog1.FontSize
+        "字体：" & CommonDialog1.FontName & _
+        "，字号：" & CommonDialog1.FontSize
     txtFont.text = danmakuFontText '在标签中显示字体
     frmContainer.Label1.FontName = danmakuFontName
     frmContainer.Label1.FontSize = danmakuFontSize
@@ -419,6 +420,10 @@ Else
         MsgBox "缺少必填项", vbInformation + vbOKOnly, "提示"
     End If
 End If
+End Sub
+
+Private Sub Form_Load()
+LoadString
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -607,3 +612,21 @@ fraAppearance.Enabled = isEnable
 fraWidth.Enabled = isEnable
 btnSend.Enabled = isEnable
 End Sub
+
+Public Sub LoadString()
+On Error Resume Next
+' 枯燥无聊的赋值……
+btnEnd.Caption = LoadResString(IDS_MAIN.btnEnd)
+fraWidth.Caption = LoadResString(IDS_MAIN.fraWidth)
+lblTipWidth.Caption = LoadResString(IDS_MAIN.lblTipWidth)
+btnSend.Caption = LoadResString(IDS_MAIN.btnSend)
+fraAppearance.Caption = LoadResString(IDS_MAIN.fraAppearance)
+btnColorPicker.Caption = LoadResString(IDS_MAIN.btnColorPicker)
+btnFontPicker.Caption = LoadResString(IDS_MAIN.btnFontPicker)
+txtDanmaku.text = LoadResString(IDS_MAIN.txtDanmaku)
+lblColor.Caption = LoadResString(IDS_MAIN.lblColor)
+lblFont.Caption = LoadResString(IDS_MAIN.lblFont)
+lblText.Caption = LoadResString(IDS_MAIN.lblText)
+lblInstruction.Caption = LoadResString(IDS_MAIN.lblInstruction)
+End Sub
+

@@ -65,6 +65,33 @@ Public Const HELP_TEXT As String = _
 Public Const CONTACT_URL As String = _
     "https://space.bilibili.com/3493134929496963"
 
+Public Enum IDS_MAIN
+    lblInstruction = 101
+    fraAppearance = 102
+    lblText = 103
+    txtDanmaku = 104
+    lblFont = 105
+    txtFont = ""
+    btnFontPicker = 106
+    lblColor = 107
+    txtColor = ""
+    btnColorPicker = 108
+    fraWidth = 109
+    txtWidth = ""
+    ' 110 是工具提示
+    lblTipWidth = 111
+    btnEnd = 112
+    btnSend = 113
+    lblEgg = ""
+    mnuFile = 201
+    mnuHelp = 202
+    mnuOpen = 301
+    mnuSave = 302
+    mnuExit = 303
+    mnuContact = 304
+    mnuAbout = 305
+End Enum
+
 Public Sub Main()
 cmdLine = Command
 Select Case cmdLine
@@ -120,3 +147,19 @@ Else
 End If
 Set xmlDoc = Nothing
 End Function
+
+Public Sub GenerateLoadString(frm As Form)
+Debug.Print "===========生成代码==========="
+Dim ctrl As Control
+For Each ctrl In frm.Controls
+    If TypeOf ctrl Is Label _
+        Or TypeOf ctrl Is Frame _
+        Or TypeOf ctrl Is CommandButton _
+        Or TypeOf ctrl Is Menu _
+    Then
+        Debug.Print ctrl.Name & ".Caption = LoadResString(IDS_MAIN." & ctrl.Name & ")"
+    ElseIf TypeOf ctrl Is TextBox Then
+        Debug.Print ctrl.Name & ".text = LoadResString(IDS_MAIN." & ctrl.Name & ")"
+    End If
+Next ctrl
+End Sub
