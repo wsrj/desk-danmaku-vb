@@ -29,7 +29,7 @@ Begin VB.Form frmMain
    ScaleWidth      =   472
    Begin VB.CommandButton btnEnd 
       Cancel          =   -1  'True
-      Caption         =   "终止(&E)"
+      Caption         =   "-终止(&E)"
       Height          =   495
       Left            =   3660
       TabIndex        =   14
@@ -38,7 +38,7 @@ Begin VB.Form frmMain
       Width           =   1575
    End
    Begin VB.Frame fraWidth 
-      Caption         =   "弹幕最大宽度（单位：二十分之一点）"
+      Caption         =   "-弹幕最大宽度（单位：二十分之一点）"
       Height          =   2535
       Left            =   240
       TabIndex        =   10
@@ -73,7 +73,7 @@ Begin VB.Form frmMain
          Value           =   100
       End
       Begin VB.Label lblTipWidth 
-         Caption         =   "注：长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度。"
+         Caption         =   "-注：长方形代表屏幕宽度，颜色填充的部分为弹幕所占宽度。"
          Height          =   495
          Left            =   360
          TabIndex        =   13
@@ -136,7 +136,7 @@ Begin VB.Form frmMain
             Alignment       =   2
             AutoSize        =   1
             Object.Width           =   3863
-            TextSave        =   "3:13"
+            TextSave        =   "3:45"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -155,7 +155,7 @@ Begin VB.Form frmMain
       Top             =   240
    End
    Begin VB.CommandButton btnSend 
-      Caption         =   "发送(&S)"
+      Caption         =   "-发送(&S)"
       Default         =   -1  'True
       Height          =   495
       Left            =   5280
@@ -171,7 +171,7 @@ Begin VB.Form frmMain
       _Version        =   393216
    End
    Begin VB.Frame fraAppearance 
-      Caption         =   "外观"
+      Caption         =   "-外观"
       Height          =   2655
       Left            =   240
       TabIndex        =   1
@@ -191,7 +191,7 @@ Begin VB.Form frmMain
          Width           =   2535
       End
       Begin VB.CommandButton btnColorPicker 
-         Caption         =   "选择颜色(&C)…"
+         Caption         =   "-选择颜色(&C)…"
          Height          =   495
          Left            =   4560
          TabIndex        =   9
@@ -211,7 +211,7 @@ Begin VB.Form frmMain
          Width           =   2535
       End
       Begin VB.CommandButton btnFontPicker 
-         Caption         =   "选择字体(&F)…"
+         Caption         =   "-选择字体(&F)…"
          Height          =   495
          Left            =   4560
          TabIndex        =   6
@@ -223,14 +223,14 @@ Begin VB.Form frmMain
          Height          =   375
          Left            =   1800
          TabIndex        =   3
-         Text            =   "哔哩哔哩( ゜- ゜)つロ干杯~"
+         Text            =   "-哔哩哔哩( ゜- ゜)つロ干杯~"
          ToolTipText     =   "输入你要发的弹幕内容"
          Top             =   480
          Width           =   4335
       End
       Begin VB.Label lblColor 
          BackStyle       =   0  'Transparent
-         Caption         =   "弹幕颜色"
+         Caption         =   "-弹幕颜色"
          ForeColor       =   &H00000000&
          Height          =   255
          Left            =   240
@@ -242,7 +242,7 @@ Begin VB.Form frmMain
          Appearance      =   0  'Flat
          BackColor       =   &H80000005&
          BackStyle       =   0  'Transparent
-         Caption         =   "弹幕字体"
+         Caption         =   "-弹幕字体"
          ForeColor       =   &H00000000&
          Height          =   255
          Left            =   240
@@ -254,7 +254,7 @@ Begin VB.Form frmMain
          Appearance      =   0  'Flat
          BackColor       =   &H80000005&
          BackStyle       =   0  'Transparent
-         Caption         =   "弹幕文字"
+         Caption         =   "-弹幕文字"
          ForeColor       =   &H00000000&
          Height          =   255
          Left            =   240
@@ -275,7 +275,7 @@ Begin VB.Form frmMain
       Appearance      =   0  'Flat
       BackColor       =   &H00000000&
       BackStyle       =   0  'Transparent
-      Caption         =   "桌面弹幕"
+      Caption         =   "-桌面弹幕"
       BeginProperty Font 
          Name            =   "微软雅黑"
          Size            =   12
@@ -293,32 +293,32 @@ Begin VB.Form frmMain
       Width           =   6615
    End
    Begin VB.Menu mnuFile 
-      Caption         =   "文件(&F)"
+      Caption         =   "-文件(&F)"
       Begin VB.Menu mnuOpen 
-         Caption         =   "打开(&O)"
+         Caption         =   "-打开(&O)"
       End
       Begin VB.Menu mnuSave 
-         Caption         =   "保存(&S)"
+         Caption         =   "-保存(&S)"
          Shortcut        =   ^S
       End
       Begin VB.Menu line 
          Caption         =   "-"
       End
       Begin VB.Menu mnuExit 
-         Caption         =   "退出(&X)"
+         Caption         =   "-退出(&X)"
          Shortcut        =   ^X
       End
    End
    Begin VB.Menu mnuHelp 
-      Caption         =   "帮助(&H)"
+      Caption         =   "-帮助(&H)"
       Begin VB.Menu mnuContact 
-         Caption         =   "联系作者(&C)"
+         Caption         =   "-联系作者(&C)"
       End
       Begin VB.Menu line2 
          Caption         =   "-"
       End
       Begin VB.Menu mnuAbout 
-         Caption         =   "关于弹幕神器(&A)…"
+         Caption         =   "-关于弹幕神器(&A)…"
       End
    End
 End
@@ -628,5 +628,12 @@ lblColor.Caption = LoadResString(IDS_MAIN.lblColor)
 lblFont.Caption = LoadResString(IDS_MAIN.lblFont)
 lblText.Caption = LoadResString(IDS_MAIN.lblText)
 lblInstruction.Caption = LoadResString(IDS_MAIN.lblInstruction)
+mnuFile.Caption = LoadResString(IDS_MAIN.mnuFile)
+mnuOpen.Caption = LoadResString(IDS_MAIN.mnuOpen)
+mnuSave.Caption = LoadResString(IDS_MAIN.mnuSave)
+mnuExit.Caption = LoadResString(IDS_MAIN.mnuExit)
+mnuHelp.Caption = LoadResString(IDS_MAIN.mnuHelp)
+mnuContact.Caption = LoadResString(IDS_MAIN.mnuContact)
+mnuAbout.Caption = LoadResString(IDS_MAIN.mnuAbout)
 End Sub
 

@@ -71,18 +71,14 @@ Public Enum IDS_MAIN
     lblText = 103
     txtDanmaku = 104
     lblFont = 105
-    txtFont = ""
     btnFontPicker = 106
     lblColor = 107
-    txtColor = ""
     btnColorPicker = 108
     fraWidth = 109
-    txtWidth = ""
     ' 110 是工具提示
     lblTipWidth = 111
     btnEnd = 112
     btnSend = 113
-    lblEgg = ""
     mnuFile = 201
     mnuHelp = 202
     mnuOpen = 301
@@ -149,6 +145,12 @@ Set xmlDoc = Nothing
 End Function
 
 Public Sub GenerateLoadString(frm As Form)
+' 食用方法：
+' 开始调试，然后在立即窗口中执行 GenerateLoadString <窗体名>，把原本的赋值注释
+' 掉，粘贴立即窗口中 ===========生成代码=========== 以下的文本，然后重新开始调
+' 试，这时候粘贴的那一块会报错，把报错的那一行整行删掉，直到能够正常启动调试，
+' 确认无误后把注释的旧的代码删掉。
+' 没错，就是这么草
 Debug.Print "===========生成代码==========="
 Dim ctrl As Control
 For Each ctrl In frm.Controls
@@ -157,9 +159,11 @@ For Each ctrl In frm.Controls
         Or TypeOf ctrl Is CommandButton _
         Or TypeOf ctrl Is Menu _
     Then
-        Debug.Print ctrl.Name & ".Caption = LoadResString(IDS_MAIN." & ctrl.Name & ")"
+        Debug.Print ctrl.Name & _
+            ".Caption = LoadResString(IDS_MAIN." & ctrl.Name & ")"
     ElseIf TypeOf ctrl Is TextBox Then
-        Debug.Print ctrl.Name & ".text = LoadResString(IDS_MAIN." & ctrl.Name & ")"
+        Debug.Print ctrl.Name & _
+            ".text = LoadResString(IDS_MAIN." & ctrl.Name & ")"
     End If
 Next ctrl
 End Sub
