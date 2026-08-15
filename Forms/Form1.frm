@@ -136,7 +136,7 @@ Begin VB.Form frmMain
             Alignment       =   2
             AutoSize        =   1
             Object.Width           =   3863
-            TextSave        =   "21:36"
+            TextSave        =   "21:58"
             Object.ToolTipText     =   "时间"
          EndProperty
       EndProperty
@@ -228,7 +228,7 @@ Begin VB.Form frmMain
          Top             =   480
          Width           =   4335
       End
-      Begin VB.Label Label4 
+      Begin VB.Label lblColor 
          BackStyle       =   0  'Transparent
          Caption         =   "弹幕颜色"
          ForeColor       =   &H00000000&
@@ -238,7 +238,7 @@ Begin VB.Form frmMain
          Top             =   1920
          Width           =   1095
       End
-      Begin VB.Label Label3 
+      Begin VB.Label lblFont 
          Appearance      =   0  'Flat
          BackColor       =   &H80000005&
          BackStyle       =   0  'Transparent
@@ -250,7 +250,7 @@ Begin VB.Form frmMain
          Top             =   1200
          Width           =   1215
       End
-      Begin VB.Label Label2 
+      Begin VB.Label lblText 
          Appearance      =   0  'Flat
          BackColor       =   &H80000005&
          BackStyle       =   0  'Transparent
@@ -376,6 +376,7 @@ frmContainer.Width = 100
 txtWidth.text = "100 twip"
 Timer1.Enabled = False
 ConOut "禁用时钟"
+lblInstruction.Caption = LoadResString(101)
 End Sub
 
 Private Sub btnColorPicker_Click()
