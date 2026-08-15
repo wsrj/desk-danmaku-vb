@@ -136,7 +136,7 @@ Begin VB.Form frmMain
             Alignment       =   2
             AutoSize        =   1
             Object.Width           =   3863
-            TextSave        =   "21:31"
+            TextSave        =   "21:36"
             Object.ToolTipText     =   "Ê±¼ä"
          EndProperty
       EndProperty
@@ -271,7 +271,7 @@ Begin VB.Form frmMain
       Top             =   6240
       Width           =   4815
    End
-   Begin VB.Label Label1 
+   Begin VB.Label lblInstruction 
       Appearance      =   0  'Flat
       BackColor       =   &H00000000&
       BackStyle       =   0  'Transparent
